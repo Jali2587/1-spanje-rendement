@@ -405,14 +405,6 @@
             margin-bottom: 15px;
         }
 
-        .test-panel {
-            background: #e74c3c;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-weight: bold;
-        }
-
         @media (max-width: 768px) {
             .gate-headline {
                 font-size: 2.2rem;
@@ -447,14 +439,6 @@
     </style>
 </head>
 <body>
-    <!-- TEST PANEL - Verwijder voor productie -->
-    <div class="test-panel">
-        🧪 TEST MODUS: Klik "Demo Toegang" om calculator direct te testen
-        <button onclick="showCalculator()" style="margin-left: 20px; padding: 5px 15px; background: white; color: #e74c3c; border: none; border-radius: 5px; cursor: pointer;">
-            Demo Toegang
-        </button>
-    </div>
-
     <!-- EMAIL GATE SECTION -->
     <div id="emailGate" class="email-gate">
         <div class="gate-content">
@@ -669,6 +653,7 @@
                     
                     <div class="benefit-card">
                         <div class="benefit-icon">☀️</div>
+                        <div style="text-align: center; padding: 20px;">
                         <h4>Stabiele Vraag</h4>
                         <p>365 dagen toerisme + expat markt</p>
                     </div>
@@ -708,7 +693,7 @@
         let currentScenario = 'realistic';
         let userEmail = '';
 
-        // Market data with realistic costs (getest en werkend)
+        // Market data with realistic costs
         const marketData = {
             netherlands: {
                 amsterdam: { 
@@ -830,8 +815,6 @@
             
             if (userEmail) {
                 document.getElementById('emailInputBottom').value = userEmail;
-            } else {
-                document.getElementById('emailInputBottom').value = 'demo@test.nl';
             }
             
             calculateROI();
