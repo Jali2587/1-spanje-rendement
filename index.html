@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gratis Spanje vs Nederland ROI Calculator | Spanje-Rendement.nl</title>
     <meta name="description" content="Bereken exact hoeveel meer je kunt verdienen met Spaans vastgoed. Inclusief alle belastingen en kosten. Gebruikt door 400+ Nederlandse investeerders.">
+    
+    <!-- Netlify Form Detection Helper -->
+    <form name="calculator-access" netlify netlify-honeypot="bot-field" hidden>
+        <input type="email" name="email">
+        <input type="hidden" name="source">
+        <input type="hidden" name="timestamp">
+        <input type="hidden" name="form-name" value="calculator-access">
+    </form>
     <style>
         * {
             margin: 0;
@@ -463,10 +471,13 @@
                     Vul je email in voor onmiddellijke toegang tot de calculator + gratis consultatie (€500 waarde)
                 </p>
                 
-                <form id="gateForm" name="calculator-access" method="POST" data-netlify="true">
+                <form id="gateForm" name="calculator-access" method="POST" data-netlify="true" netlify-honeypot="bot-field">
                     <input type="hidden" name="form-name" value="calculator-access">
                     <input type="hidden" name="source" value="linkedin-calculator">
                     <input type="hidden" name="timestamp" id="timestamp">
+                    <div style="display: none;">
+                        <input name="bot-field">
+                    </div>
                     
                     <div class="input-group">
                         <input 
@@ -690,8 +701,9 @@
     </div>
 
     <script>
-        // Email notifications worden verstuurd naar: contact@spanje-rendement.nl
-        // Configureer dit in Netlify Dashboard > Forms > calculator-access > Add notification
+        // ✅ NETLIFY FORMS SETUP COMPLEET
+        // Email notifications configureren in: Netlify Dashboard > Forms > calculator-access
+        // Email wordt verstuurd naar: contact@spanje-rendement.nl
         
         let currentScenario = 'realistic';
         let userEmail = '';
@@ -797,17 +809,26 @@
             const formData = new FormData(this);
             userEmail = formData.get('email');
 
+            // Check honeypot (spam protection)
+            if (formData.get('bot-field')) {
+                return; // Spam detected, do nothing
+            }
+
             // Submit to Netlify Forms
             fetch('/', {
                 method: 'POST',
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: new URLSearchParams(formData).toString()
             })
-            .then(() => {
-                showCalculator();
+            .then(response => {
+                if (response.ok) {
+                    showCalculator();
+                } else {
+                    throw new Error('Form submission failed');
+                }
             })
             .catch((error) => {
-                alert('Er ging iets mis. Probeer het opnieuw of contacteer ons direct.');
+                alert('Er ging iets mis. Probeer het opnieuw of contacteer ons direct op contact@spanje-rendement.nl');
                 console.error('Form submission error:', error);
             });
         });
