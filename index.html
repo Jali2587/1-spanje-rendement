@@ -53,6 +53,27 @@
             margin: 0 auto;
         }
 
+        .hero-image {
+            width: 100%;
+            max-width: 500px;
+            height: 250px;
+            border-radius: 15px;
+            margin: 0 auto 30px auto;
+            display: block;
+            object-fit: cover;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 3px solid rgba(255,255,255,0.2);
+        }
+
+        .image-caption {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-weight: 500;
+            font-style: italic;
+        }
+
         .gate-headline {
             font-size: 2.8rem;
             font-weight: bold;
@@ -418,6 +439,15 @@
                 font-size: 2.2rem;
             }
             
+            .expert-team {
+                gap: 20px;
+            }
+            
+            .expert-photo {
+                width: 80px;
+                height: 80px;
+            }
+            
             .input-group {
                 flex-direction: column;
             }
@@ -450,6 +480,14 @@
     <!-- EMAIL GATE SECTION -->
     <div id="emailGate" class="email-gate">
         <div class="gate-content">
+            <!-- Valencia Hero Image -->
+            <img src="valencia-sfeer.jpg" 
+                 alt="Valencia Spanje - Prachtige vastgoed investeringslocatie" 
+                 class="hero-image">
+            <div class="image-caption">
+                Valencia - Jouw volgende vastgoed investeringslocatie
+            </div>
+            
             <h1 class="gate-headline">🇪🇸 Gratis Spanje ROI Calculator</h1>
             <p class="gate-subheadline">
                 Ontdek waarom Nederlandse investeerders gemiddeld 89% meer verdienen 
