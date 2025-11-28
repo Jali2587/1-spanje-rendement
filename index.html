@@ -1,3 +1,8 @@
+Absoluut. Hieronder vindt u de volledige, werkende code van de website (`index.html`), waarbij de kleuren zijn aangepast naar het **luxe en professionele turquoise/oceaangroen** om de geloofwaardigheid en conversie te maximaliseren, precies zoals besproken.
+
+Ik heb de code zo aangepast dat de functionaliteit **100% behouden** is.
+
+```html
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -6,7 +11,6 @@
     <title>Gratis Spanje vs Nederland ROI Calculator | Spanje-Rendement.nl</title>
     <meta name="description" content="Bereken exact hoeveel meer je kunt verdienen met Spaans vastgoed. Inclusief alle belastingen en kosten. Gebruikt door 400+ Nederlandse investeerders.">
     
-    <!-- Netlify Form Detection Helper -->
     <form name="calculator-access" netlify netlify-honeypot="bot-field" hidden>
         <input type="email" name="email">
         <input type="hidden" name="source">
@@ -21,8 +25,9 @@
         }
 
         body {
+            /* AANGEPAST: Lichte, neutrale achtergrond voor een rustiger effect */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f4f7f9; 
             min-height: 100vh;
             padding: 20px;
         }
@@ -36,9 +41,10 @@
             overflow: hidden;
         }
 
-        /* EMAIL GATE STYLES */
+        /* EMAIL GATE STYLES - AANGEPAST NAAR LUXE TURQUOISE */
         .email-gate {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            /* Vervangt het agressieve rood door kalm en luxe Oceaangroen */
+            background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
             color: white;
             padding: 60px 40px;
             text-align: center;
@@ -147,11 +153,13 @@
 
         .email-input:focus {
             outline: none;
-            border-color: #ff6b6b;
+            /* Focus kleur: een variant van de gate kleur */
+            border-color: #1abc9c;
         }
 
         .access-btn {
             flex: 1;
+            /* Groene knop (Groei/Geld) behouden */
             background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
             color: white;
             border: none;
@@ -161,6 +169,8 @@
             cursor: pointer;
             transition: transform 0.2s;
             min-width: 180px;
+            /* Zorgt voor een luxer gevoel bij de knop */
+            box-shadow: 0 4px 15px rgba(0, 184, 148, 0.4); 
         }
 
         .access-btn:hover {
@@ -172,11 +182,13 @@
             justify-content: space-around;
             margin-top: 20px;
             font-size: 0.9rem;
-            color: #666;
+            /* Zorgt dat ze zichtbaar blijven tegen de witte formulier achtergrond */
+            color: #888; 
         }
 
         .social-proof {
-            background: #2c3e50;
+            /* Donkerdere, professionele achtergrond voor de testimonial */
+            background: #2c3e50; 
             color: white;
             padding: 30px;
             text-align: center;
@@ -188,8 +200,9 @@
             display: none;
         }
 
+        /* HEADER NU OOK IN TURQUOISE VOOR MERKCONSISTENTIE */
         .header {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
             color: white;
             padding: 40px;
             text-align: center;
@@ -348,6 +361,7 @@
             cursor: pointer;
             width: 100%;
             transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 184, 148, 0.4); 
         }
 
         .calculate-btn:hover {
@@ -473,10 +487,8 @@
     </style>
 </head>
 <body>
-    <!-- EMAIL GATE SECTION -->
     <div id="emailGate" class="email-gate">
         <div class="gate-content">
-            <!-- Valencia Hero Image -->
             <img src="valencia-sfeer.jpg" 
                  alt="Valencia Spanje - Prachtige vastgoed investeringslocatie" 
                  class="hero-image">
@@ -543,7 +555,6 @@
         </div>
     </div>
 
-    <!-- CALCULATOR CONTENT -->
     <div id="calculatorContent" class="calculator-content">
         <div class="container">
             <div class="header">
@@ -737,7 +748,6 @@
     <script>
         // ✅ NETLIFY FORMS SETUP COMPLEET
         // Email notifications configureren in: Netlify Dashboard > Forms > calculator-access
-        // Email wordt verstuurd naar: contact@spanje-rendement.nl
         
         let currentScenario = 'realistic';
         let userEmail = '';
@@ -942,9 +952,9 @@
             let tax = 0;
             if (isRealistic) {
                 if (country === 'netherlands') {
-                    tax = budget * 0.0088; // Box 3 forfait
+                    tax = budget * 0.0088; // Box 3 forfait 2024 aanname
                 } else {
-                    tax = grossRental * 0.25; // Spanish income tax
+                    tax = grossRental * 0.25; // Spaanse inkomstenbelasting op huur
                 }
             }
 
@@ -979,7 +989,7 @@
             const nlBreakdown = `
                 <h5 style="color: rgba(255,255,255,0.9); margin-bottom: 10px;">🇳🇱 ${nlData.name} Breakdown:</h5>
                 <div class="breakdown-item"><span>Bruto huurinkomsten (${timeframe} jaar):</span><span>€${Math.round(nlResults.grossRental * timeframe).toLocaleString()}</span></div>
-                <div class="breakdown-item"><span>- Belasting (Box 3):</span><span>€${Math.round(nlResults.tax).toLocaleString()}</span></div>
+                <div class="breakdown-item"><span>- Belasting (Box 3 forfait):</span><span>€${Math.round(nlResults.tax).toLocaleString()}</span></div>
                 <div class="breakdown-item"><span>- Onderhoud (${nlData.maintenance}%):</span><span>€${Math.round(nlResults.maintenance).toLocaleString()}</span></div>
                 <div class="breakdown-item"><span>- Beheer & verzekering:</span><span>€${Math.round(nlResults.management + nlResults.insurance).toLocaleString()}</span></div>
                 <div class="breakdown-item"><span>- Overdrachtsbelasting (${nlData.transferTax}%):</span><span>€${Math.round(nlResults.transferTax).toLocaleString()}</span></div>
@@ -1033,3 +1043,4 @@
     </script>
 </body>
 </html>
+```
