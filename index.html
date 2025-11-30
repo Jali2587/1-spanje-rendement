@@ -6,12 +6,6 @@
     <title>Gratis Spanje vs Nederland ROI Calculator | Spanje-Rendement.nl</title>
     <meta name="description" content="Bereken exact hoeveel meer je kunt verdienen met Spaans vastgoed. Inclusief alle belastingen en kosten. Gebruikt door 400+ Nederlandse investeerders.">
     
-    <form name="calculator-access" netlify netlify-honeypot="bot-field" hidden>
-        <input type="email" name="email">
-        <input type="hidden" name="source">
-        <input type="hidden" name="timestamp">
-        <input type="hidden" name="form-name" value="calculator-access">
-    </form>
     <style>
         * {
             margin: 0;
@@ -36,163 +30,14 @@
             overflow: hidden;
         }
 
-        /* EMAIL GATE STYLES - AANGEPAST NAAR LUXE TURQUOISE */
+        /* EMAIL GATE STYLES (VERBORGEN) */
         .email-gate {
-            /* Vervangt het agressieve rood door kalm en luxe Oceaangroen */
-            background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
-            color: white;
-            padding: 60px 40px;
-            text-align: center;
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .gate-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .hero-image {
-            width: 100%;
-            max-width: 500px;
-            height: 250px;
-            border-radius: 15px;
-            margin: 0 auto 30px auto;
-            display: block;
-            object-fit: cover;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            border: 3px solid rgba(255,255,255,0.2);
-        }
-
-        .image-caption {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            opacity: 0.9;
-            font-weight: 500;
-            font-style: italic;
-        }
-
-        .gate-headline {
-            font-size: 2.8rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .gate-subheadline {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-            opacity: 0.95;
-            line-height: 1.4;
-        }
-
-        .value-points {
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 40px 0;
-            text-align: left;
-        }
-
-        .value-point {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .value-point::before {
-            content: "✅";
-            margin-right: 15px;
-            font-size: 1.2rem;
-        }
-
-        .email-form {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin: 40px 0;
-        }
-
-        .form-title {
-            color: #2c3e50;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .form-subtitle {
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.4;
-        }
-
-        .input-group {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .email-input {
-            flex: 2;
-            padding: 18px 20px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-
-        .email-input:focus {
-            outline: none;
-            /* Focus kleur: een variant van de gate kleur */
-            border-color: #1abc9c;
-        }
-
-        .access-btn {
-            flex: 1;
-            /* Groene knop (Groei/Geld) behouden */
-            background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.2s;
-            min-width: 180px;
-            /* Zorgt voor een luxer gevoel bij de knop */
-            box-shadow: 0 4px 15px rgba(0, 184, 148, 0.4); 
-        }
-
-        .access-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .trust-signals {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            /* Zorgt dat ze zichtbaar blijven tegen de witte formulier achtergrond */
-            color: #888; 
-        }
-
-        .social-proof {
-            /* Donkerdere, professionele achtergrond voor de testimonial */
-            background: #2c3e50; 
-            color: white;
-            padding: 30px;
-            text-align: center;
-            font-size: 1.1rem;
+            display: none; /* De Gate is nu permanent verborgen */
         }
 
         /* CALCULATOR STYLES */
         .calculator-content {
-            display: none;
+            display: block; /* De Calculator is nu standaard zichtbaar */
         }
 
         /* HEADER NU OOK IN TURQUOISE VOOR MERKCONSISTENTIE */
@@ -231,11 +76,7 @@
         }
 
         .success-message {
-            background: #00b894;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            font-size: 1.1rem;
+            display: none; /* Niet meer nodig zonder directe login */
         }
 
         .calculator-section {
@@ -444,37 +285,23 @@
         }
 
         @media (max-width: 768px) {
-            .gate-headline {
-                font-size: 2.2rem;
-            }
-            
-            .hero-image {
-                height: 200px;
-                border-radius: 10px;
-            }
-            
             .input-group {
                 flex-direction: column;
             }
-            
             .access-btn {
                 min-width: auto;
             }
-
             .calculator-section {
                 grid-template-columns: 1fr;
                 gap: 20px;
                 padding: 20px;
             }
-            
             .header h1 {
                 font-size: 2rem;
             }
-            
             .email-form-bottom {
                 flex-direction: column;
             }
-
             .city-comparison {
                 grid-template-columns: 1fr;
             }
@@ -483,82 +310,13 @@
 </head>
 <body>
     <div id="emailGate" class="email-gate">
-        <div class="gate-content">
-            <img src="valencia-sfeer.jpg" 
-                 alt="Valencia Spanje - Prachtige vastgoed investeringslocatie" 
-                 class="hero-image">
-            <div class="image-caption">
-                Spanje - Jouw volgende vastgoed investeringslocatie
-            </div>
-            
-            <h1 class="gate-headline">🇪🇸 Gratis Spanje ROI Calculator</h1>
-            <p class="gate-subheadline">
-                Ontdek waarom Nederlandse investeerders gemiddeld 89% meer verdienen 
-                met Spaans vastgoed (na alle belastingen en kosten)
-            </p>
-
-            <div class="value-points">
-                <div class="value-point">Vergelijkt alle Nederlandse vs Spaanse steden</div>
-                <div class="value-point">Inclusief Box 3, ITP en alle verborgen kosten</div>
-                <div class="value-point">Realistische scenario's (onderhoud, leegstand, belasting)</div>
-                <div class="value-point">Gratis persoonlijke consultatie (normaal €500)</div>
-                <div class="value-point">Exclusieve off-market deals deze maand</div>
-                <div class="value-point">Gebruikt door 400+ Nederlandse investeerders</div>
-            </div>
-
-            <div class="email-form">
-                <h3 class="form-title">🔓 Krijg Direct Toegang</h3>
-                <p class="form-subtitle">
-                    Vul je email in voor onmiddellijke toegang tot de calculator + gratis consultatie (€500 waarde)
-                </p>
-                
-                <form id="gateForm" name="calculator-access" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-                    <input type="hidden" name="form-name" value="calculator-access">
-                    <input type="hidden" name="source" value="linkedin-calculator">
-                    <input type="hidden" name="timestamp" id="timestamp">
-                    <div style="display: none;">
-                        <input name="bot-field">
-                    </div>
-                    
-                    <div class="input-group">
-                        <input 
-                            type="email" 
-                            name="email"
-                            id="gateEmail"
-                            class="email-input" 
-                            placeholder="Jouw email adres" 
-                            required
-                        >
-                        <button type="submit" class="access-btn">
-                            🚀 Krijg Toegang
-                        </button>
-                    </div>
-                </form>
-
-                <div class="trust-signals">
-                    <span>✅ 100% Gratis</span>
-                    <span>✅ Geen Spam</span>
-                    <span>✅ Direct Toegang</span>
-                    <span>✅ Nederlandse Experts</span>
-                </div>
-            </div>
         </div>
-
-        <div class="social-proof">
-            💬 "Deze calculator toonde me dat ik €127.000 meer kon verdienen in Valencia. 
-            Binnen 3 maanden had ik mijn appartement gekocht." - Marcel, Utrecht
-        </div>
-    </div>
 
     <div id="calculatorContent" class="calculator-content">
         <div class="container">
             <div class="header">
                 <h1>🇪🇸 Jouw Persoonlijke ROI Analyse</h1>
                 <p>Transparante vergelijking inclusief alle kosten en belastingen</p>
-            </div>
-
-            <div class="success-message">
-                🎉 <strong>Toegang Verleend!</strong> We contacteren je binnen 24 uur voor je gratis €500 consultatie.
             </div>
 
             <div class="value-prop">
@@ -664,13 +422,12 @@
             <div class="lead-capture">
                 <h3>📞 Claim je Gratis Persoonlijke Consultatie</h3>
                 <p style="margin-bottom: 25px; opacity: 0.9;">
-                    Bespreek je calculator resultaten met een expert. Krijg persoonlijk advies over 
-                    belastingoptimalisatie, financiering en de beste deals voor jouw situatie.
+                    Vul je e-mail in en druk op de knop. Je e-mailprogramma opent met een vooraf ingevuld bericht.
                 </p>
                 
                 <div class="email-form-bottom">
-                    <input type="email" class="email-input-bottom" placeholder="Je email (automatisch ingevuld)" id="emailInputBottom" readonly>
-                    <button class="submit-btn" onclick="downloadReport()">Claim Consultatie</button>
+                    <input type="email" class="email-input-bottom" placeholder="Vul hier je e-mail in" id="emailInputBottom">
+                    <button class="submit-btn" onclick="startConsultation()">Claim Consultatie</button>
                 </div>
                 
                 <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.7;">
@@ -741,12 +498,8 @@
     </div>
 
     <script>
-        // ✅ NETLIFY FORMS SETUP COMPLEET
-        // Email notifications configureren in: Netlify Dashboard > Forms > calculator-access
-        
         let currentScenario = 'realistic';
-        let userEmail = '';
-
+        
         // Market data with realistic costs
         const marketData = {
             netherlands: {
@@ -835,54 +588,8 @@
             }
         };
 
-        // Initialize timestamp
-        window.addEventListener('load', function() {
-            document.getElementById('timestamp').value = new Date().toISOString();
-            calculateROI(); // Initial calculation
-        });
-
-        // Email gate form handler
-        document.getElementById('gateForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            userEmail = formData.get('email');
-
-            // Check honeypot (spam protection)
-            if (formData.get('bot-field')) {
-                return; // Spam detected, do nothing
-            }
-
-            // Submit to Netlify Forms
-            fetch('/', {
-                method: 'POST',
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams(formData).toString()
-            })
-            .then(response => {
-                if (response.ok) {
-                    showCalculator();
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            })
-            .catch((error) => {
-                alert('Er ging iets mis. Probeer het opnieuw of contacteer ons direct op contact@spanje-rendement.nl');
-                console.error('Form submission error:', error);
-            });
-        });
-
-        function showCalculator() {
-            document.getElementById('emailGate').style.display = 'none';
-            document.getElementById('calculatorContent').style.display = 'block';
-            
-            if (userEmail) {
-                document.getElementById('emailInputBottom').value = userEmail;
-            }
-            
-            calculateROI();
-            window.scrollTo(0, 0);
-        }
+        // Initialize calculation on load
+        window.addEventListener('load', calculateROI);
 
         function setScenario(scenario) {
             currentScenario = scenario;
@@ -898,7 +605,6 @@
             const timeframe = parseInt(document.getElementById('timeframe').value);
 
             if (!budget || budget < 50000) {
-                alert('Voer een budget in van minimaal €50.000');
                 return;
             }
 
@@ -909,17 +615,17 @@
             const esResults = calculateCountryROI(budget, esData, timeframe, 'spain');
 
             // Update display
-            document.getElementById('nlReturn').textContent = `€${Math.round(nlResults.totalReturn).toLocaleString()}`;
+            document.getElementById('nlReturn').textContent = `€${Math.round(nlResults.totalReturn).toLocaleString('nl-NL')}`;
             document.getElementById('nlROI').textContent = `${nlResults.annualROI.toFixed(1)}% per jaar`;
             
-            document.getElementById('esReturn').textContent = `€${Math.round(esResults.totalReturn).toLocaleString()}`;
+            document.getElementById('esReturn').textContent = `€${Math.round(esResults.totalReturn).toLocaleString('nl-NL')}`;
             document.getElementById('esROI').textContent = `${esResults.annualROI.toFixed(1)}% per jaar`;
 
             const difference = esResults.totalReturn - nlResults.totalReturn;
             const percentageDiff = nlResults.annualROI > 0 ? 
                 ((esResults.annualROI / nlResults.annualROI - 1) * 100).toFixed(0) : 100;
             
-            document.getElementById('extraProfit').textContent = `€${Math.round(difference).toLocaleString()}`;
+            document.getElementById('extraProfit').textContent = `€${Math.round(difference).toLocaleString('nl-NL')}`;
             document.getElementById('extraProfit').className = difference > 0 ? 'result-value positive' : 'result-value negative';
             document.getElementById('percentageDiff').textContent = `${percentageDiff}% ${difference > 0 ? 'hoger' : 'lager'}`;
 
@@ -983,51 +689,69 @@
 
             const nlBreakdown = `
                 <h5 style="color: rgba(255,255,255,0.9); margin-bottom: 10px;">🇳🇱 ${nlData.name} Breakdown:</h5>
-                <div class="breakdown-item"><span>Bruto huurinkomsten (${timeframe} jaar):</span><span>€${Math.round(nlResults.grossRental * timeframe).toLocaleString()}</span></div>
-                <div class="breakdown-item"><span>- Belasting (Box 3 forfait):</span><span>€${Math.round(nlResults.tax).toLocaleString()}</span></div>
-                <div class="breakdown-item"><span>- Onderhoud (${nlData.maintenance}%):</span><span>€${Math.round(nlResults.maintenance).toLocaleString()}</span></div>
-                <div class="breakdown-item"><span>- Beheer & verzekering:</span><span>€${Math.round(nlResults.management + nlResults.insurance).toLocaleString()}</span></div>
-                <div class="breakdown-item"><span>- Overdrachtsbelasting (${nlData.transferTax}%):</span><span>€${Math.round(nlResults.transferTax).toLocaleString()}</span></div>
-                <div class="breakdown-item"><span>+ Waardestijging (${nlData.growth}%/jaar):</span><span>€${Math.round(nlResults.appreciation).toLocaleString()}</span></div>
-                <div class="breakdown-item" style="border-top: 2px solid rgba(255,255,255,0.5); font-weight: bold; margin-top: 10px; padding-top: 10px;"><span>Netto Return:</span><span>€${Math.round(nlResults.totalReturn).toLocaleString()}</span></div>
+                <div class="breakdown-item"><span>Bruto huurinkomsten (${timeframe} jaar):</span><span>€${Math.round(nlResults.grossRental * timeframe).toLocaleString('nl-NL')}</span></div>
+                <div class="breakdown-item"><span>- Belasting (Box 3 forfait):</span><span>€${Math.round(nlResults.tax).toLocaleString('nl-NL')}</span></div>
+                <div class="breakdown-item"><span>- Onderhoud (${nlData.maintenance}%):</span><span>€${Math.round(nlResults.maintenance).toLocaleString('nl-NL')}</span></div>
+                <div class="breakdown-item"><span>- Beheer & verzekering:</span><span>€${Math.round(nlResults.management + nlResults.insurance).toLocaleString('nl-NL')}</span></div>
+                <div class="breakdown-item"><span>- Overdrachtsbelasting (${nlData.transferTax}%):</span><span>€${Math.round(nlResults.transferTax).toLocaleString('nl-NL')}</span></div>
+                <div class="breakdown-item"><span>+ Waardestijging (${nlData.growth}%/jaar):</span><span>€${Math.round(nlResults.appreciation).toLocaleString('nl-NL')}</span></div>
+                <div class="breakdown-item" style="border-top: 2px solid rgba(255,255,255,0.5); font-weight: bold; margin-top: 10px; padding-top: 10px;"><span>Netto Return:</span><span>€${Math.round(nlResults.totalReturn).toLocaleString('nl-NL')}</span></div>
             `;
 
             const esBreakdown = `
                 <h5 style="color: rgba(255,255,255,0.9); margin: 20px 0 10px 0;">🇪🇸 ${esData.name} Breakdown:</h5>
-                <div class="breakdown-item"><span>Bruto huurinkomsten (${timeframe} jaar):</span><span>€${Math.round(esResults.grossRental * timeframe).toLocaleString()}</span></div>
-                <div class="breakdown-item"><span>- Belasting (25% op huur):</span><span>€${Math.round(esResults.tax).toLocaleString()}</span></div>
-                <div class="breakdown-item"><span>- Onderhoud (${esData.maintenance}%):</span><span>€${Math.round(esResults.maintenance).toLocaleString()}</span></div>
-                <div class="breakdown-item"><span>- Beheer & verzekering:</span><span>€${Math.round(esResults.management + esResults.insurance).toLocaleString()}</span></div>
-                <div class="breakdown-item"><span>- ITP belasting (${esData.transferTax}%):</span><span>€${Math.round(esResults.transferTax).toLocaleString()}</span></div>
-                <div class="breakdown-item"><span>+ Waardestijging (${esData.growth}%/jaar):</span><span>€${Math.round(esResults.appreciation).toLocaleString()}</span></div>
-                <div class="breakdown-item" style="border-top: 2px solid rgba(255,255,255,0.5); font-weight: bold; margin-top: 10px; padding-top: 10px;"><span>Netto Return:</span><span>€${Math.round(esResults.totalReturn).toLocaleString()}</span></div>
+                <div class="breakdown-item"><span>Bruto huurinkomsten (${timeframe} jaar):</span><span>€${Math.round(esResults.grossRental * timeframe).toLocaleString('nl-NL')}</span></div>
+                <div class="breakdown-item"><span>- Belasting (25% op huur):</span><span>€${Math.round(esResults.tax).toLocaleString('nl-NL')}</span></div>
+                <div class="breakdown-item"><span>- Onderhoud (${esData.maintenance}%):</span><span>€${Math.round(esResults.maintenance).toLocaleString('nl-NL')}</span></div>
+                <div class="breakdown-item"><span>- Beheer & verzekering:</span><span>€${Math.round(esResults.management + esResults.insurance).toLocaleString('nl-NL')}</span></div>
+                <div class="breakdown-item"><span>- ITP belasting (${esData.transferTax}%):</span><span>€${Math.round(esResults.transferTax).toLocaleString('nl-NL')}</span></div>
+                <div class="breakdown-item"><span>+ Waardestijging (${esData.growth}%/jaar):</span><span>€${Math.round(esResults.appreciation).toLocaleString('nl-NL')}</span></div>
+                <div class="breakdown-item" style="border-top: 2px solid rgba(255,255,255,0.5); font-weight: bold; margin-top: 10px; padding-top: 10px;"><span>Netto Return:</span><span>€${Math.round(esResults.totalReturn).toLocaleString('nl-NL')}</span></div>
             `;
 
             document.getElementById('nlBreakdown').innerHTML = nlBreakdown;
             document.getElementById('esBreakdown').innerHTML = esBreakdown;
         }
 
-        function downloadReport() {
-            const email = document.getElementById('emailInputBottom').value;
+        // --- AANGEPASTE FUNCTIE VOOR MAILTO LINK ---
+        function startConsultation() {
+            const userEmail = document.getElementById('emailInputBottom').value;
             
-            if (!email || !email.includes('@')) {
-                alert('Er is een probleem met het email adres. Herlaad de pagina en probeer opnieuw.');
+            if (!userEmail || !userEmail.includes('@')) {
+                alert('Vul uw e-mailadres in zodat wij u kunnen contacteren.');
                 return;
             }
 
-            alert(`Perfect! We contacteren je binnen 24 uur op ${email} om je gratis €500 consultatie in te plannen. Check ook je inbox voor bevestiging.`);
+            // Gebruik de huidige calculator-status voor de context in de e-mail
+            const budget = parseFloat(document.getElementById('budget').value).toLocaleString('nl-NL');
+            const dutchCity = document.getElementById('dutchCity').options[document.getElementById('dutchCity').selectedIndex].text;
+            const spanishCity = document.getElementById('spanishCity').options[document.getElementById('spanishCity').selectedIndex].text;
             
-            console.log('Consultation requested:', { 
-                email: email, 
-                timestamp: new Date(),
-                scenario: currentScenario,
-                budget: document.getElementById('budget').value,
-                timeframe: document.getElementById('timeframe').value,
-                cities: {
-                    dutch: document.getElementById('dutchCity').value,
-                    spanish: document.getElementById('spanishCity').value
-                }
-            });
+            // LET OP: VERVANG 'uw.naam@meelkeradvies.nl' door uw daadwerkelijke e-mailadres!
+            const recipientEmail = 'uw.naam@meelkeradvies.nl'; 
+
+            const subject = encodeURIComponent(`Aanvraag Consultatie: ROI Calculator (${dutchCity} vs ${spanishCity})`);
+            
+            const body = encodeURIComponent(
+                `Hallo,\n\n` +
+                `Ik wil graag mijn gratis consultatie claimen n.a.v. de Spanje ROI Calculator.\n` +
+                `Mijn ingevoerde details zijn:\n` +
+                `- Budget: €${budget}\n` +
+                `- NL Stad: ${dutchCity}\n` +
+                `- ES Stad: ${spanishCity}\n\n` +
+                `Mijn specifieke vraag/reactie is:\n\n` +
+                `[Vul hier uw vraag/reactie in]\n\n` +
+                `Mijn telefoonnummer is: [Vul hier uw telefoonnummer in (optioneel)]\n\n` +
+                `Met vriendelijke groet,\n` +
+                `${userEmail}` 
+            );
+
+            // Open de mailto link
+            window.location.href = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
+            
+            // (Optionele melding voor goede UX)
+            alert('Uw e-mailprogramma wordt nu geopend om de consultatie-aanvraag te versturen. Controleer uw inbox!');
+
         }
 
         // Event listeners
@@ -1038,4 +762,3 @@
     </script>
 </body>
 </html>
-```
