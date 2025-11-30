@@ -14,7 +14,6 @@
         }
 
         body {
-            /* AANGEPAST: Lichte, neutrale achtergrond voor een rustiger effect */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f4f7f9; 
             min-height: 100vh;
@@ -32,12 +31,12 @@
 
         /* EMAIL GATE STYLES (VERBORGEN) */
         .email-gate {
-            display: none; /* De Gate is nu permanent verborgen */
+            display: none; 
         }
 
         /* CALCULATOR STYLES */
         .calculator-content {
-            display: block; /* De Calculator is nu standaard zichtbaar */
+            display: block; 
         }
 
         /* HEADER NU OOK IN TURQUOISE VOOR MERKCONSISTENTIE */
@@ -76,7 +75,7 @@
         }
 
         .success-message {
-            display: none; /* Niet meer nodig zonder directe login */
+            display: none; 
         }
 
         .calculator-section {
@@ -182,7 +181,8 @@
             font-weight: bold;
         }
 
-        .positive { color: #00b894; }
+        /* --- AANPASSING HIER: Hoog contrast geel/goud op donkere achtergrond --- */
+        .positive { color: #FFD700; } 
         .neutral { color: #fdcb6e; }
         .negative { color: #e17055; }
 
@@ -713,7 +713,7 @@
             document.getElementById('esBreakdown').innerHTML = esBreakdown;
         }
 
-        // --- AANGEPASTE FUNCTIE VOOR MAILTO LINK ---
+        // --- FUNCTIE VOOR MAILTO LINK ---
         function startConsultation() {
             const userEmail = document.getElementById('emailInputBottom').value;
             
