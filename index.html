@@ -181,7 +181,7 @@
             font-weight: bold;
         }
 
-        /* --- AANPASSING HIER: Hoog contrast geel/goud op donkere achtergrond --- */
+        /* Hoog contrast geel/goud op donkere achtergrond */
         .positive { color: #FFD700; } 
         .neutral { color: #fdcb6e; }
         .negative { color: #e17055; }
@@ -727,8 +727,8 @@
             const dutchCity = document.getElementById('dutchCity').options[document.getElementById('dutchCity').selectedIndex].text;
             const spanishCity = document.getElementById('spanishCity').options[document.getElementById('spanishCity').selectedIndex].text;
             
-            // LET OP: VERVANG 'uw.naam@meelkeradvies.nl' door uw daadwerkelijke e-mailadres!
-            const recipientEmail = 'uw.naam@meelkeradvies.nl'; 
+            // CORRECTIE: Het e-mailadres is nu contact@spanje-rendement.nl
+            const recipientEmail = 'contact@spanje-rendement.nl'; 
 
             const subject = encodeURIComponent(`Aanvraag Consultatie: ROI Calculator (${dutchCity} vs ${spanishCity})`);
             
