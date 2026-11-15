@@ -93,23 +93,32 @@
     var kosten = prijs * getal(p + '-kosten') / 100;
     var lening = prijs * getal(p + '-ltv') / 100;
     var eigen = prijs + kosten - lening;
-    var netto = prijs * getal(p + '-bar') / 100 * (1 - getal(p + '-expl') / 100);
+    var huur = prijs * getal(p + '-bar') / 100;
+    var explkosten = huur * getal(p + '-expl') / 100;
+    var netto = huur - explkosten;
     var rente = lening * getal(p + '-rente') / 100;
     var kas = netto - rente;
     var eind = prijs * Math.pow(1 + getal(p + '-groei') / 100, jaren);
     return {
-      eigen: eigen, netto: netto, rente: rente, kas: kas,
+      koop: prijs + kosten, lening: lening, eigen: eigen, huur: huur, explkosten: explkosten, rente: rente, kas: kas,
+      verkoop: eind, naverkoop: eind - lening,
       direct: eigen > 0 ? kas / eigen : null,
       totaal: jaarrendement(eigen, kas, eind - lening, jaren),
       zonder: jaarrendement(prijs + kosten, netto, eind, jaren)
     };
   }
   function toon(p, r) {
+    zet(p + '-u-koop', alsEuro(r.koop));
+    zet(p + '-u-lening', alsEuro(r.lening));
     zet(p + '-u-eigen', alsEuro(r.eigen));
-    zet(p + '-u-netto', alsEuro(r.netto));
+    zet(p + '-u-huur', alsEuro(r.huur));
+    zet(p + '-u-explkosten', alsEuro(r.explkosten));
     zet(p + '-u-rente', alsEuro(r.rente));
     zet(p + '-u-kas', alsEuro(r.kas));
     zet(p + '-u-direct', alsPct(r.direct));
+    zet(p + '-u-verkoop', alsEuro(r.verkoop));
+    zet(p + '-u-aflossen', alsEuro(r.lening));
+    zet(p + '-u-naverkoop', alsEuro(r.naverkoop));
     zet(p + '-u-zonder', alsPct(r.zonder));
     zet(p + '-u-totaal', alsPct(r.totaal));
   }
@@ -124,6 +133,7 @@
     var t = belegging('t', jaren), s = belegging('s', jaren);
     toon('t', t); toon('s', s);
     zet('u-jaren', String(jaren));
+    Array.prototype.forEach.call(document.querySelectorAll('[data-jaren]'), function (s) { s.textContent = String(jaren); });
     var max = Math.max(Math.abs(t.totaal || 0), Math.abs(s.totaal || 0), 0.04) * 1.15;
     balk('balk-t', t.totaal, max); balk('balk-s', s.totaal, max);
     var zin = '';
@@ -162,9 +172,9 @@
   function samenvatting() {
     var jaren = looptijd();
     var t = belegging('t', jaren), s = belegging('s', jaren);
-    return 'Thuis: prijs ' + alsEuro(getal('t-prijs')) + ', lening ' + getal('t-ltv') + '%, rente ' + getal('t-rente') + '%, bruto huur ' + getal('t-bar') +
-      '%, rendement op eigen geld ' + alsPct(t.totaal) + '. Spanje: prijs ' + alsEuro(getal('s-prijs')) + ', lening ' + getal('s-ltv') + '%, rente ' + getal('s-rente') +
-      '%, bruto huur ' + getal('s-bar') + '%, rendement op eigen geld ' + alsPct(s.totaal) + '. Looptijd ' + jaren + ' jaar.';
+    return 'Thuis: prijs ' + alsEuro(getal('t-prijs')) + ', lening ' + getal('t-ltv') + '%, rente ' + getal('t-rente') + '%, huur ' + getal('t-bar') +
+      '%, rendement op eigen inbreng ' + alsPct(t.totaal) + '. Spanje: prijs ' + alsEuro(getal('s-prijs')) + ', lening ' + getal('s-ltv') + '%, rente ' + getal('s-rente') +
+      '%, huur ' + getal('s-bar') + '%, rendement op eigen inbreng ' + alsPct(s.totaal) + '. Looptijd ' + jaren + ' jaar.';
   }
   function meld(tekst) { zet('r-melding', tekst); }
 
@@ -310,9 +320,9 @@
     var b = el('m-bronnen');
     b.textContent = 'Bronnen: ';
     b.appendChild(bronLink(m.volume.bron, m.volume.url));
-    b.appendChild(document.createTextNode(' voor het investeringsvolume en '));
+    b.appendChild(document.createTextNode(' voor de aankopen door professionele beleggers en '));
     b.appendChild(bronLink(m.rendement.bron, m.rendement.url));
-    b.appendChild(document.createTextNode(' voor het bruto huurrendement (' + m.rendement.periode + '). Bruto rendement is de jaarhuur gedeeld door de vraagprijs, vóór kosten en belasting. De cijfers van CBRE zijn overgenomen uit het krantenbericht, niet uit het rapport zelf; de bedragen voor alternatief en zorg en voor logistiek zijn daar afgerond.'));
+    b.appendChild(document.createTextNode(' voor de huur als deel van de prijs (' + m.rendement.periode + '). Beleggers noemen dit het bruto huurrendement. De cijfers van CBRE zijn overgenomen uit het krantenbericht, niet uit het rapport zelf; de bedragen voor alternatief en zorg en voor logistiek zijn daar afgerond.'));
   }
 
   /* ---------- Deals ---------- */

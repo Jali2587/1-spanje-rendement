@@ -69,8 +69,8 @@
     <!-- Rendement -->
     <div class="paneel" role="tabpanel" id="p-rendement" aria-labelledby="tab-rendement">
       <div class="paneel__kop">
-        <h2>Rendement op eigen geld, thuis en in Spanje</h2>
-        <p>Vul links een pand in zoals u dat nu bezit of zou kopen, en rechts het Spaanse alternatief. De uitkomst is vóór belasting.</p>
+        <h2>Rendement op uw eigen inbreng, thuis en in Spanje</h2>
+        <p>Vul links een pand in zoals u dat nu bezit of zou kopen, en rechts het Spaanse alternatief. Onder de invoer staat de rekensom stap voor stap. Alle uitkomsten zijn vóór belasting.</p>
       </div>
 
       <div class="balken" aria-live="polite">
@@ -84,7 +84,7 @@
           <span class="balk__spoor"><span class="balk__vulling" id="balk-s"></span></span>
           <strong class="balk__getal" id="s-u-totaal">0,0%</strong>
         </div>
-        <p class="balken__uitleg">Rendement per jaar op uw eigen geld, inclusief waardegroei, over <span id="u-jaren">10</span> jaar. <span id="r-conclusie"></span></p>
+        <p class="balken__uitleg">Gemiddeld rendement per jaar op uw eigen inbreng, over <span id="u-jaren">10</span> jaar. Hierin zit wat u elk jaar overhoudt én wat u bij verkoop overhoudt. <span id="r-conclusie"></span></p>
       </div>
 
       <form class="reken" id="form-rendement" novalidate>
@@ -93,20 +93,30 @@
             <legend>Thuis <span>Nederland of België</span></legend>
             <div class="velden">
               <label class="veld"><span>Aankoopprijs (€)</span><input type="number" id="t-prijs" value="2000000" min="0" step="50000" inputmode="numeric"></label>
-              <label class="veld"><span>Aankoopkosten (%)</span><input type="number" id="t-kosten" value="10" min="0" max="30" step="0.1" inputmode="decimal"></label>
-              <label class="veld"><span>Bruto huur per jaar (% van prijs)</span><input type="number" id="t-bar" value="5" min="0" max="30" step="0.1" inputmode="decimal"></label>
-              <label class="veld"><span>Exploitatiekosten (% van huur)</span><input type="number" id="t-expl" value="20" min="0" max="100" step="1" inputmode="decimal"></label>
-              <label class="veld"><span>Lening (% van prijs)</span><input type="number" id="t-ltv" value="60" min="0" max="100" step="1" inputmode="decimal"></label>
-              <label class="veld"><span>Rente (%)</span><input type="number" id="t-rente" value="5" min="0" max="30" step="0.1" inputmode="decimal"></label>
-              <label class="veld"><span>Waardegroei per jaar (%)</span><input type="number" id="t-groei" value="2" min="-20" max="30" step="0.1" inputmode="decimal"></label>
+              <label class="veld"><span>Aankoopkosten (% van de prijs)</span><input type="number" id="t-kosten" value="10" min="0" max="30" step="0.1" inputmode="decimal"></label>
+              <label class="veld"><span>Huur per jaar (% van de prijs)</span><input type="number" id="t-bar" value="5" min="0" max="30" step="0.1" inputmode="decimal"></label>
+              <label class="veld"><span>Kosten van verhuur (% van de huur)</span><input type="number" id="t-expl" value="20" min="0" max="100" step="1" inputmode="decimal"></label>
+              <label class="veld"><span>Lening (% van de prijs)</span><input type="number" id="t-ltv" value="60" min="0" max="100" step="1" inputmode="decimal"></label>
+              <label class="veld"><span>Rente op de lening (% per jaar)</span><input type="number" id="t-rente" value="5" min="0" max="30" step="0.1" inputmode="decimal"></label>
+              <label class="veld"><span>Waardestijging per jaar (%)</span><input type="number" id="t-groei" value="2" min="-20" max="30" step="0.1" inputmode="decimal"></label>
             </div>
-            <dl class="uitkomst">
-              <div><dt>Eigen geld</dt><dd id="t-u-eigen"></dd></div>
-              <div><dt>Netto huur per jaar</dt><dd id="t-u-netto"></dd></div>
-              <div><dt>Rente per jaar</dt><dd id="t-u-rente"></dd></div>
-              <div><dt>Kasstroom per jaar</dt><dd id="t-u-kas"></dd></div>
-              <div><dt>Kasstroom op eigen geld</dt><dd id="t-u-direct"></dd></div>
-              <div><dt>Rendement zonder lening</dt><dd id="t-u-zonder"></dd></div>
+            <dl class="uitkomst uitkomst--stappen">
+              <div class="uitkomst__kop"><dt>Bij aankoop</dt><dd></dd></div>
+              <div><dt>Prijs plus aankoopkosten</dt><dd id="t-u-koop"></dd></div>
+              <div><dt>Af: lening</dt><dd id="t-u-lening"></dd></div>
+              <div class="uitkomst__som"><dt>Eigen inbreng</dt><dd id="t-u-eigen"></dd></div>
+              <div class="uitkomst__kop"><dt>Elk jaar</dt><dd></dd></div>
+              <div><dt>Huur</dt><dd id="t-u-huur"></dd></div>
+              <div><dt>Af: kosten van verhuur</dt><dd id="t-u-explkosten"></dd></div>
+              <div><dt>Af: rente</dt><dd id="t-u-rente"></dd></div>
+              <div class="uitkomst__som"><dt>Per jaar over</dt><dd id="t-u-kas"></dd></div>
+              <div><dt>Dat is van uw eigen inbreng</dt><dd id="t-u-direct"></dd></div>
+              <div class="uitkomst__kop"><dt>Bij verkoop na <span data-jaren>10</span> jaar</dt><dd></dd></div>
+              <div><dt>Verkoopprijs</dt><dd id="t-u-verkoop"></dd></div>
+              <div><dt>Af: lening aflossen</dt><dd id="t-u-aflossen"></dd></div>
+              <div class="uitkomst__som"><dt>Over na verkoop</dt><dd id="t-u-naverkoop"></dd></div>
+              <div class="uitkomst__kop"><dt>Ter vergelijking</dt><dd></dd></div>
+              <div><dt>Rendement per jaar zonder lening</dt><dd id="t-u-zonder"></dd></div>
             </dl>
           </fieldset>
 
@@ -114,20 +124,30 @@
             <legend>Spanje <span>het alternatief</span></legend>
             <div class="velden">
               <label class="veld"><span>Aankoopprijs (€)</span><input type="number" id="s-prijs" value="2000000" min="0" step="50000" inputmode="numeric"></label>
-              <label class="veld"><span>Aankoopkosten (%)</span><input type="number" id="s-kosten" value="10" min="0" max="30" step="0.1" inputmode="decimal"></label>
-              <label class="veld"><span>Bruto huur per jaar (% van prijs)</span><input type="number" id="s-bar" value="6.2" min="0" max="30" step="0.1" inputmode="decimal"></label>
-              <label class="veld"><span>Exploitatiekosten (% van huur)</span><input type="number" id="s-expl" value="25" min="0" max="100" step="1" inputmode="decimal"></label>
-              <label class="veld"><span>Lening (% van prijs)</span><input type="number" id="s-ltv" value="55" min="0" max="100" step="1" inputmode="decimal"></label>
-              <label class="veld"><span>Rente (%)</span><input type="number" id="s-rente" value="6" min="0" max="30" step="0.1" inputmode="decimal"></label>
-              <label class="veld"><span>Waardegroei per jaar (%)</span><input type="number" id="s-groei" value="2" min="-20" max="30" step="0.1" inputmode="decimal"></label>
+              <label class="veld"><span>Aankoopkosten (% van de prijs)</span><input type="number" id="s-kosten" value="10" min="0" max="30" step="0.1" inputmode="decimal"></label>
+              <label class="veld"><span>Huur per jaar (% van de prijs)</span><input type="number" id="s-bar" value="6.2" min="0" max="30" step="0.1" inputmode="decimal"></label>
+              <label class="veld"><span>Kosten van verhuur (% van de huur)</span><input type="number" id="s-expl" value="25" min="0" max="100" step="1" inputmode="decimal"></label>
+              <label class="veld"><span>Lening (% van de prijs)</span><input type="number" id="s-ltv" value="55" min="0" max="100" step="1" inputmode="decimal"></label>
+              <label class="veld"><span>Rente op de lening (% per jaar)</span><input type="number" id="s-rente" value="6" min="0" max="30" step="0.1" inputmode="decimal"></label>
+              <label class="veld"><span>Waardestijging per jaar (%)</span><input type="number" id="s-groei" value="2" min="-20" max="30" step="0.1" inputmode="decimal"></label>
             </div>
-            <dl class="uitkomst">
-              <div><dt>Eigen geld</dt><dd id="s-u-eigen"></dd></div>
-              <div><dt>Netto huur per jaar</dt><dd id="s-u-netto"></dd></div>
-              <div><dt>Rente per jaar</dt><dd id="s-u-rente"></dd></div>
-              <div><dt>Kasstroom per jaar</dt><dd id="s-u-kas"></dd></div>
-              <div><dt>Kasstroom op eigen geld</dt><dd id="s-u-direct"></dd></div>
-              <div><dt>Rendement zonder lening</dt><dd id="s-u-zonder"></dd></div>
+            <dl class="uitkomst uitkomst--stappen">
+              <div class="uitkomst__kop"><dt>Bij aankoop</dt><dd></dd></div>
+              <div><dt>Prijs plus aankoopkosten</dt><dd id="s-u-koop"></dd></div>
+              <div><dt>Af: lening</dt><dd id="s-u-lening"></dd></div>
+              <div class="uitkomst__som"><dt>Eigen inbreng</dt><dd id="s-u-eigen"></dd></div>
+              <div class="uitkomst__kop"><dt>Elk jaar</dt><dd></dd></div>
+              <div><dt>Huur</dt><dd id="s-u-huur"></dd></div>
+              <div><dt>Af: kosten van verhuur</dt><dd id="s-u-explkosten"></dd></div>
+              <div><dt>Af: rente</dt><dd id="s-u-rente"></dd></div>
+              <div class="uitkomst__som"><dt>Per jaar over</dt><dd id="s-u-kas"></dd></div>
+              <div><dt>Dat is van uw eigen inbreng</dt><dd id="s-u-direct"></dd></div>
+              <div class="uitkomst__kop"><dt>Bij verkoop na <span data-jaren>10</span> jaar</dt><dd></dd></div>
+              <div><dt>Verkoopprijs</dt><dd id="s-u-verkoop"></dd></div>
+              <div><dt>Af: lening aflossen</dt><dd id="s-u-aflossen"></dd></div>
+              <div class="uitkomst__som"><dt>Over na verkoop</dt><dd id="s-u-naverkoop"></dd></div>
+              <div class="uitkomst__kop"><dt>Ter vergelijking</dt><dd></dd></div>
+              <div><dt>Rendement per jaar zonder lening</dt><dd id="s-u-zonder"></dd></div>
             </dl>
           </fieldset>
         </div>
@@ -143,13 +163,26 @@
         <p class="melding" id="r-melding" role="status"></p>
       </form>
 
+      <div class="uitleg">
+        <h3>Wat de woorden betekenen</h3>
+        <dl>
+          <div><dt>Eigen inbreng</dt><dd>Het geld dat u zelf meebrengt: de aankoopprijs plus de aankoopkosten, min de lening.</dd></div>
+          <div><dt>Aankoopkosten</dt><dd>Wat u bovenop de prijs betaalt: overdrachtsbelasting of btw, notaris, register en advies. Op het tabblad Aankoopkosten staat de belasting per Spaanse regio.</dd></div>
+          <div><dt>Kosten van verhuur</dt><dd>Alles wat van de huur afgaat voordat u rente betaalt: onderhoud, beheer, verzekering, lokale belastingen en leegstand.</dd></div>
+          <div><dt>Per jaar over</dt><dd>De huur min de kosten van verhuur en min de rente. De lening wordt tussentijds niet afgelost.</dd></div>
+          <div><dt>Over na verkoop</dt><dd>De verkoopprijs min de lening die u dan aflost. De verkoopprijs is de aankoopprijs, elk jaar verhoogd met de waardestijging.</dd></div>
+          <div><dt>Gemiddeld rendement per jaar op uw eigen inbreng</dt><dd>Het percentage waarmee uw eigen inbreng elk jaar zou moeten groeien om uit te komen op wat u in totaal terugkrijgt: elk jaar het bedrag dat u overhoudt, en aan het eind het bedrag na verkoop. Beleggers noemen dit de IRR.</dd></div>
+          <div><dt>Rendement per jaar zonder lening</dt><dd>Dezelfde som, maar dan alsof u prijs en aankoopkosten helemaal zelf betaalt. Het verschil met het rendement op uw eigen inbreng is het effect van de lening.</dd></div>
+        </dl>
+      </div>
+
       <div class="bewaard" id="bewaard" hidden>
         <h3>Uw bewaarde scenario's</h3>
         <p class="klein">Bewaard in deze browser, alleen voor u zichtbaar.</p>
         <ul class="bewaard__lijst" id="bewaard-lijst"></ul>
       </div>
 
-      <p class="voetnoot">De ingevulde cijfers zijn voorbeelden, geen marktgegevens of aanbod. De 6,2% bruto huur voor Spanje is het landelijke gemiddelde voor woningen volgens idealista (derde kwartaal 2026). De lening is aflossingsvrij gerekend en het pand wordt aan het eind van de looptijd verkocht. Belasting, verkoopkosten en leegstand buiten de exploitatiekosten zijn niet meegenomen. Geen beleggingsadvies.</p>
+      <p class="voetnoot">De ingevulde cijfers zijn voorbeelden, geen marktgegevens of aanbod. De 6,2% huur voor Spanje is het landelijke gemiddelde voor woningen volgens idealista (derde kwartaal 2026): de jaarhuur gedeeld door de vraagprijs. Niet meegenomen: belasting op huur en winst, kosten bij verkoop en kosten van de lening zelf (afsluitprovisie, taxatie). Geen beleggingsadvies.</p>
     </div>
 
     <!-- Aankoopkosten -->
@@ -161,14 +194,14 @@
       <form class="reken reken--rij" id="form-kosten" novalidate>
         <label class="veld"><span>Aankoopprijs (€)</span><input type="number" id="k-prijs" value="2000000" min="0" step="50000" inputmode="numeric"></label>
         <label class="veld"><span>Regio</span><select id="k-regio"></select></label>
-        <label class="veld"><span>Notaris, register en advies (%)</span><input type="number" id="k-overig" value="1.5" min="0" max="10" step="0.1" inputmode="decimal"></label>
+        <label class="veld"><span>Notaris, register en advies (% van de prijs)</span><input type="number" id="k-overig" value="1.5" min="0" max="10" step="0.1" inputmode="decimal"></label>
       </form>
       <div class="kosten">
         <div class="kosten__uit">
           <dl class="uitkomst uitkomst--groot">
             <div><dt>Overdrachtsbelasting <span id="k-u-tarief"></span></dt><dd id="k-u-itp"></dd></div>
             <div><dt>Notaris, register en advies</dt><dd id="k-u-overig"></dd></div>
-            <div class="uitkomst__som"><dt>Totaal bij de aankoopprijs</dt><dd id="k-u-totaal"></dd></div>
+            <div class="uitkomst__som"><dt>Totaal aankoopkosten, bovenop de prijs</dt><dd id="k-u-totaal"></dd></div>
           </dl>
           <p class="klein" id="k-u-noot"></p>
         </div>
@@ -184,43 +217,43 @@
     <div class="paneel" role="tabpanel" id="p-project" aria-labelledby="tab-project" hidden>
       <div class="paneel__kop">
         <h2>Projectcheck voor ontwikkelaars</h2>
-        <p>De vier kengetallen waar een financier als eerste naar kijkt bij een ontwikkeling of verbouwing.</p>
+        <p>De vier verhoudingen waar een financier als eerste naar kijkt bij een ontwikkeling of verbouwing.</p>
       </div>
       <div class="project">
         <form class="reken" id="form-project" novalidate>
           <div class="velden velden--een">
             <label class="veld"><span>Grond of aankoop (€)</span><input type="number" id="o-grond" value="1200000" min="0" step="50000" inputmode="numeric"></label>
             <label class="veld"><span>Bouwkosten (€)</span><input type="number" id="o-bouw" value="2400000" min="0" step="50000" inputmode="numeric"></label>
-            <label class="veld"><span>Bijkomende kosten, inclusief rente (€)</span><input type="number" id="o-bij" value="600000" min="0" step="10000" inputmode="numeric"></label>
+            <label class="veld"><span>Overige kosten: architect, vergunningen, belasting, rente (€)</span><input type="number" id="o-bij" value="600000" min="0" step="10000" inputmode="numeric"></label>
             <label class="veld"><span>Verwachte verkoopopbrengst (€)</span><input type="number" id="o-opbrengst" value="5400000" min="0" step="50000" inputmode="numeric"></label>
             <label class="veld"><span>Gevraagde lening (€)</span><input type="number" id="o-lening" value="2700000" min="0" step="50000" inputmode="numeric"></label>
           </div>
         </form>
         <div class="project__uit" aria-live="polite">
           <div class="kengetallen">
-            <div class="kengetal"><span>Lening op kosten</span><strong id="o-u-ltc"></strong></div>
-            <div class="kengetal"><span>Lening op opbrengst</span><strong id="o-u-ltgdv"></strong></div>
-            <div class="kengetal"><span>Marge op kosten</span><strong id="o-u-margek"></strong></div>
-            <div class="kengetal"><span>Eigen geld in het project</span><strong id="o-u-eigenpct"></strong></div>
+            <div class="kengetal"><span>Lening als deel van de totale kosten</span><strong id="o-u-ltc"></strong></div>
+            <div class="kengetal"><span>Lening als deel van de verkoopopbrengst</span><strong id="o-u-ltgdv"></strong></div>
+            <div class="kengetal"><span>Winst als deel van de totale kosten</span><strong id="o-u-margek"></strong></div>
+            <div class="kengetal"><span>Eigen inbreng als deel van de totale kosten</span><strong id="o-u-eigenpct"></strong></div>
           </div>
           <dl class="uitkomst">
-            <div><dt>Totale kosten</dt><dd id="o-u-kosten"></dd></div>
-            <div><dt>Eigen geld</dt><dd id="o-u-eigen"></dd></div>
-            <div><dt>Winst vóór belasting</dt><dd id="o-u-winst"></dd></div>
-            <div><dt>Marge op opbrengst</dt><dd id="o-u-margeo"></dd></div>
+            <div><dt>Totale kosten (grond, bouw en overige kosten)</dt><dd id="o-u-kosten"></dd></div>
+            <div><dt>Eigen inbreng (totale kosten min lening)</dt><dd id="o-u-eigen"></dd></div>
+            <div><dt>Winst vóór belasting (opbrengst min totale kosten)</dt><dd id="o-u-winst"></dd></div>
+            <div><dt>Winst als deel van de verkoopopbrengst</dt><dd id="o-u-margeo"></dd></div>
           </dl>
-          <p class="project__vervolg">Wilt u weten hoe een financier het hele dossier leest? De dossiercheck van JLM Business Holding stelt in tien minuten de vragen over project, kredietnemer, eigen geld en exit, en geeft direct een rapport.</p>
+          <p class="project__vervolg">Wilt u weten hoe een financier het hele dossier leest? De dossiercheck van JLM Business Holding stelt in tien minuten de vragen over project, kredietnemer, eigen inbreng en terugbetaling, en geeft direct een rapport.</p>
           <a class="knop" href="https://jlmbusinessholding.com/nl/dossiercheck/" rel="noopener" target="_blank">Open de dossiercheck</a>
         </div>
       </div>
-      <p class="voetnoot">Voorbeeldcijfers. De uitkomst zegt niets over de vraag of een financier het project financiert: dat hangt ook af van locatie, vergunningen, voorverkoop en de kredietnemer.</p>
+      <p class="voetnoot">Voorbeeldcijfers. Financiers noemen de lening als deel van de kosten "loan to cost" (LTC) en de lening als deel van de opbrengst "loan to GDV". De uitkomst zegt niets over de vraag of een financier het project financiert: dat hangt ook af van locatie, vergunningen, voorverkoop en de kredietnemer.</p>
     </div>
 
     <!-- Markt -->
     <div class="paneel" role="tabpanel" id="p-markt" aria-labelledby="tab-markt" hidden>
       <div class="paneel__kop">
         <h2>De Spaanse vastgoedmarkt in cijfers</h2>
-        <p>Twee openbare bronnen, elk kwartaal bijgewerkt: het investeringsvolume volgens CBRE en het bruto huurrendement volgens idealista.</p>
+        <p>Twee openbare bronnen, elk kwartaal bijgewerkt. CBRE telt voor hoeveel geld professionele beleggers vastgoed kochten. idealista berekent wat verhuur oplevert: de jaarhuur gedeeld door de vraagprijs, vóór kosten en belasting.</p>
       </div>
       <div class="markt">
         <div class="markt__blok markt__blok--kop">
@@ -228,19 +261,19 @@
           <p id="m-volume-tekst"></p>
         </div>
         <div class="markt__blok">
-          <h3>Waar het geld naartoe ging</h3>
+          <h3>Aankopen per soort vastgoed</h3>
           <ul class="staven" id="m-segmenten"></ul>
         </div>
         <div class="markt__blok">
-          <h3>Per regio</h3>
+          <h3>Aankopen per regio</h3>
           <ul class="staven" id="m-regios"></ul>
         </div>
         <div class="markt__blok">
-          <h3>Bruto huurrendement, landelijk</h3>
+          <h3>Huur als deel van de prijs, heel Spanje</h3>
           <ul class="staven staven--geel" id="m-landelijk"></ul>
         </div>
         <div class="markt__blok">
-          <h3>Woningen, per stad</h3>
+          <h3>Huur als deel van de prijs, woningen per stad</h3>
           <ul class="staven staven--geel" id="m-steden"></ul>
           <p class="klein">De hoogste en laagste steden uit het bericht van idealista.</p>
         </div>
@@ -319,8 +352,8 @@
       </article>
       <article>
         <img src="/img/situatie-kust.jpg" alt="Wit huis aan een baai met pijnbomen" width="900" height="600" loading="lazy" decoding="async">
-        <h3>U wilt geld vrijmaken</h3>
-        <p>U bezit al vastgoed in Spanje en wilt herfinancieren, bijvoorbeeld om een volgende aankoop te doen.</p>
+        <h3>U wilt geld uit uw vastgoed halen</h3>
+        <p>U bezit al vastgoed in Spanje en wilt er een nieuwe of hogere lening op nemen, bijvoorbeeld om een volgende aankoop te doen.</p>
       </article>
     </div>
   </div>
@@ -356,7 +389,7 @@
         <label class="veld"><span>Bedrijf</span><input type="text" name="bedrijf" autocomplete="organization"></label>
         <label class="veld"><span>Ik ben</span><select name="rol"><option>Belegger</option><option>Ontwikkelaar</option><option>Family office</option><option>Adviseur</option></select></label>
         <label class="veld"><span>Ik ben gevestigd in</span><select name="land"><option>Nederland</option><option>België</option><option>Spanje</option><option>Anders</option></select></label>
-        <label class="veld"><span>Wat wilt u doen</span><select name="doel"><option>Verhuurd object kopen</option><option>Ontwikkelen of afbouwen</option><option>Herfinancieren</option><option>Nog oriënteren</option></select></label>
+        <label class="veld"><span>Wat wilt u doen</span><select name="doel"><option>Verhuurd object kopen</option><option>Ontwikkelen of afbouwen</option><option>Nieuwe lening op bestaand vastgoed</option><option>Nog oriënteren</option></select></label>
         <label class="veld"><span>Omvang</span><select name="bedrag"><option>€ 1 tot 3 miljoen</option><option>€ 3 tot 10 miljoen</option><option>Boven € 10 miljoen</option></select></label>
       </div>
       <label class="veld"><span>Uw plan in een paar zinnen</span><textarea name="bericht" rows="5" required></textarea></label>
