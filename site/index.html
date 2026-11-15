@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spanje Rendement | Rekentools en deals voor vastgoedbeleggers</title>
+<meta name="description" content="Reken een vastgoedinvestering in Spanje door met financiering, vergelijk met Nederland of België en volg recente financieringen en transacties. Voor ervaren beleggers en ontwikkelaars, vanaf € 1 miljoen.">
+<link rel="canonical" href="https://spanje-rendement.nl/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Spanje Rendement">
+<meta property="og:title" content="Spanje Rendement | Rekentools en deals voor vastgoedbeleggers">
+<meta property="og:description" content="Reken een vastgoedinvestering in Spanje door met financiering en volg recente financieringen en transacties.">
+<meta property="og:url" content="https://spanje-rendement.nl/">
+<meta property="og:locale" content="nl_NL">
+<meta name="theme-color" content="#0f5c45">
+<link rel="icon" href="/img/icoon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/stijl.css">
+</head>
+<body>
+<a class="skip" href="#werkbank">Naar de rekentools</a>
+
+<header class="top">
+  <div class="top__in">
+    <a class="merk" href="/" aria-label="Spanje Rendement, startpagina">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="9" fill="#0f5c45"/><path d="M9 28 L17 19 L22 23 L31 11" fill="none" stroke="#f2b705" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31" cy="11" r="3.2" fill="#f2b705"/></svg>
+      <span class="merk__naam">Spanje Rendement</span>
+    </a>
+    <nav class="top__nav" aria-label="Menu">
+      <a href="#werkbank">Rekentools</a>
+      <a href="#werkbank" data-open="deals">Deals</a>
+      <a href="#update">Maandupdate</a>
+      <a href="#wie">Wie wij zijn</a>
+    </nav>
+    <a class="knop knop--klein" href="#contact">Leg uw rekensom voor</a>
+  </div>
+</header>
+
+<main>
+<section class="intro">
+  <div class="baan">
+    <h1>Reken Spanje door zoals u een pand thuis doorrekent</h1>
+    <p class="intro__tekst">U belegt al met succes in vastgoed in Nederland of België. Hier rekent u dezelfde investering in Spanje door, met financiering erbij, en ziet u welke deals er op dit moment gesloten worden.</p>
+    <ul class="intro__feiten">
+      <li>Voor beleggers en ontwikkelaars, vanaf € 1 miljoen</li>
+      <li>Rekent in uw browser, uw cijfers blijven bij u</li>
+      <li>Deals en marktcijfers bijgewerkt op <span data-bijgewerkt>15 november 2026</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="werkbank" id="werkbank" aria-label="Rekentools">
+  <div class="baan">
+    <div class="tabs" role="tablist" aria-label="Kies een tool">
+      <button class="tab" role="tab" id="tab-rendement" data-tab="rendement" aria-controls="p-rendement" aria-selected="true">Rendement</button>
+      <button class="tab" role="tab" id="tab-kosten" data-tab="kosten" aria-controls="p-kosten" aria-selected="false" tabindex="-1">Aankoopkosten</button>
+      <button class="tab" role="tab" id="tab-project" data-tab="project" aria-controls="p-project" aria-selected="false" tabindex="-1">Projectcheck</button>
+      <button class="tab" role="tab" id="tab-markt" data-tab="markt" aria-controls="p-markt" aria-selected="false" tabindex="-1">Markt</button>
+      <button class="tab" role="tab" id="tab-deals" data-tab="deals" aria-controls="p-deals" aria-selected="false" tabindex="-1">Deals</button>
+    </div>
+
+    <!-- Rendement -->
+    <div class="paneel" role="tabpanel" id="p-rendement" aria-labelledby="tab-rendement">
+      <div class="paneel__kop">
+        <h2>Rendement op eigen geld, thuis en in Spanje</h2>
+        <p>Vul links een pand in zoals u dat nu bezit of zou kopen, en rechts het Spaanse alternatief. De uitkomst is vóór belasting.</p>
+      </div>
+
+      <div class="balken" aria-live="polite">
+        <div class="balk">
+          <span class="balk__naam">Thuis</span>
+          <span class="balk__spoor"><span class="balk__vulling" id="balk-t"></span></span>
+          <strong class="balk__getal" id="t-u-totaal">0,0%</strong>
+        </div>
+        <div class="balk balk--spanje">
+          <span class="balk__naam">Spanje</span>
+          <span class="balk__spoor"><span class="balk__vulling" id="balk-s"></span></span>
+          <strong class="balk__getal" id="s-u-totaal">0,0%</strong>
+        </div>
+        <p class="balken__uitleg">Rendement per jaar op uw eigen geld, inclusief waardegroei, over <span id="u-jaren">10</span> jaar. <span id="r-conclusie"></span></p>
+      </div>
+
+      <form class="reken" id="form-rendement" novalidate>
+        <div class="reken__kolommen">
+          <fieldset class="kolom">
+            <legend>Thuis <span>Nederland of België</span></legend>
+            <div class="velden">
+              <label class="veld"><span>Aankoopprijs (€)</span><input type="number" id="t-prijs" value="2000000" min="0" step="50000" inputmode="numeric"></label>
+              <label class="veld"><span>Aankoopkosten (%)</span><input type="number" id="t-kosten" value="10" min="0" max="30" step="0.1" inputmode="decimal"></label>
+              <label class="veld"><span>Bruto huur per jaar (% van prijs)</span><input type="number" id="t-bar" value="5" min="0" max="30" step="0.1" inputmode="decimal"></label>
+              <label class="veld"><span>Exploitatiekosten (% van huur)</span><input type="number" id="t-expl" value="20" min="0" max="100" step="1" inputmode="decimal"></label>
+              <label class="veld"><span>Lening (% van prijs)</span><input type="number" id="t-ltv" value="60" min="0" max="100" step="1" inputmode="decimal"></label>
+              <label class="veld"><span>Rente (%)</span><input type="number" id="t-rente" value="5" min="0" max="30" step="0.1" inputmode="decimal"></label>
+              <label class="veld"><span>Waardegroei per jaar (%)</span><input type="number" id="t-groei" value="2" min="-20" max="30" step="0.1" inputmode="decimal"></label>
+            </div>
+            <dl class="uitkomst">
+              <div><dt>Eigen geld</dt><dd id="t-u-eigen"></dd></div>
+              <div><dt>Netto huur per jaar</dt><dd id="t-u-netto"></dd></div>
+              <div><dt>Rente per jaar</dt><dd id="t-u-rente"></dd></div>
+              <div><dt>Kasstroom per jaar</dt><dd id="t-u-kas"></dd></div>
+              <div><dt>Kasstroom op eigen geld</dt><dd id="t-u-direct"></dd></div>
+              <div><dt>Rendement zonder lening</dt><dd id="t-u-zonder"></dd></div>
+            </dl>
+          </fieldset>
+
+          <fieldset class="kolom kolom--spanje">
+            <legend>Spanje <span>het alternatief</span></legend>
+            <div class="velden">
+              <label class="veld"><span>Aankoopprijs (€)</span><input type="number" id="s-prijs" value="2000000" min="0" step="50000" inputmode="numeric"></label>
+              <label class="veld"><span>Aankoopkosten (%)</span><input type="number" id="s-kosten" value="10" min="0" max="30" step="0.1" inputmode="decimal"></label>
+              <label class="veld"><span>Bruto huur per jaar (% van prijs)</span><input type="number" id="s-bar" value="6.2" min="0" max="30" step="0.1" inputmode="decimal"></label>
+              <label class="veld"><span>Exploitatiekosten (% van huur)</span><input type="number" id="s-expl" value="25" min="0" max="100" step="1" inputmode="decimal"></label>
+              <label class="veld"><span>Lening (% van prijs)</span><input type="number" id="s-ltv" value="55" min="0" max="100" step="1" inputmode="decimal"></label>
+              <label class="veld"><span>Rente (%)</span><input type="number" id="s-rente" value="6" min="0" max="30" step="0.1" inputmode="decimal"></label>
+              <label class="veld"><span>Waardegroei per jaar (%)</span><input type="number" id="s-groei" value="2" min="-20" max="30" step="0.1" inputmode="decimal"></label>
+            </div>
+            <dl class="uitkomst">
+              <div><dt>Eigen geld</dt><dd id="s-u-eigen"></dd></div>
+              <div><dt>Netto huur per jaar</dt><dd id="s-u-netto"></dd></div>
+              <div><dt>Rente per jaar</dt><dd id="s-u-rente"></dd></div>
+              <div><dt>Kasstroom per jaar</dt><dd id="s-u-kas"></dd></div>
+              <div><dt>Kasstroom op eigen geld</dt><dd id="s-u-direct"></dd></div>
+              <div><dt>Rendement zonder lening</dt><dd id="s-u-zonder"></dd></div>
+            </dl>
+          </fieldset>
+        </div>
+
+        <div class="reken__onder">
+          <label class="veld veld--smal"><span>Looptijd (jaren)</span><input type="number" id="jaren" value="10" min="1" max="30" step="1" inputmode="numeric"></label>
+          <div class="reken__acties">
+            <button class="knop knop--licht" type="button" id="bewaar">Bewaar dit scenario</button>
+            <button class="knop knop--licht" type="button" id="deel">Kopieer link naar deze rekensom</button>
+            <button class="knop knop--tekst" type="button" id="herstel">Zet voorbeeldcijfers terug</button>
+          </div>
+        </div>
+        <p class="melding" id="r-melding" role="status"></p>
+      </form>
+
+      <div class="bewaard" id="bewaard" hidden>
+        <h3>Uw bewaarde scenario's</h3>
+        <p class="klein">Bewaard in deze browser, alleen voor u zichtbaar.</p>
+        <ul class="bewaard__lijst" id="bewaard-lijst"></ul>
+      </div>
+
+      <p class="voetnoot">De ingevulde cijfers zijn voorbeelden, geen marktgegevens of aanbod. De 6,2% bruto huur voor Spanje is het landelijke gemiddelde voor woningen volgens idealista (derde kwartaal 2026). De lening is aflossingsvrij gerekend en het pand wordt aan het eind van de looptijd verkocht. Belasting, verkoopkosten en leegstand buiten de exploitatiekosten zijn niet meegenomen. Geen beleggingsadvies.</p>
+    </div>
+
+    <!-- Aankoopkosten -->
+    <div class="paneel" role="tabpanel" id="p-kosten" aria-labelledby="tab-kosten" hidden>
+      <div class="paneel__kop">
+        <h2>Overdrachtsbelasting per regio</h2>
+        <p>Op bestaand vastgoed betaalt de koper in Spanje overdrachtsbelasting (ITP). Het tarief verschilt per regio en loopt uiteen van 4% tot 13%.</p>
+      </div>
+      <form class="reken reken--rij" id="form-kosten" novalidate>
+        <label class="veld"><span>Aankoopprijs (€)</span><input type="number" id="k-prijs" value="2000000" min="0" step="50000" inputmode="numeric"></label>
+        <label class="veld"><span>Regio</span><select id="k-regio"></select></label>
+        <label class="veld"><span>Notaris, register en advies (%)</span><input type="number" id="k-overig" value="1.5" min="0" max="10" step="0.1" inputmode="decimal"></label>
+      </form>
+      <div class="kosten">
+        <div class="kosten__uit">
+          <dl class="uitkomst uitkomst--groot">
+            <div><dt>Overdrachtsbelasting <span id="k-u-tarief"></span></dt><dd id="k-u-itp"></dd></div>
+            <div><dt>Notaris, register en advies</dt><dd id="k-u-overig"></dd></div>
+            <div class="uitkomst__som"><dt>Totaal bij de aankoopprijs</dt><dd id="k-u-totaal"></dd></div>
+          </dl>
+          <p class="klein" id="k-u-noot"></p>
+        </div>
+        <div class="kosten__tabel">
+          <h3>Alle regio's naast elkaar</h3>
+          <ul class="staven" id="k-staven"></ul>
+        </div>
+      </div>
+      <p class="voetnoot">Algemeen tarief voor bestaand vastgoed, stand 2026, volgens <a href="https://www.gibobs.com/blog/itp-2026/" rel="noopener" target="_blank">het overzicht van Gibobs</a>. Catalonië en de Balearen werken met een schaal die oploopt met de prijs, Baskenland verschilt per provincie. Bij nieuwbouw en bij verkoop door een ondernemer geldt btw met zegelrecht in plaats van ITP. Het percentage voor notaris, register en advies is uw eigen schatting. Laat de afrekening altijd controleren door uw Spaanse adviseur.</p>
+    </div>
+
+    <!-- Projectcheck -->
+    <div class="paneel" role="tabpanel" id="p-project" aria-labelledby="tab-project" hidden>
+      <div class="paneel__kop">
+        <h2>Projectcheck voor ontwikkelaars</h2>
+        <p>De vier kengetallen waar een financier als eerste naar kijkt bij een ontwikkeling of verbouwing.</p>
+      </div>
+      <div class="project">
+        <form class="reken" id="form-project" novalidate>
+          <div class="velden velden--een">
+            <label class="veld"><span>Grond of aankoop (€)</span><input type="number" id="o-grond" value="1200000" min="0" step="50000" inputmode="numeric"></label>
+            <label class="veld"><span>Bouwkosten (€)</span><input type="number" id="o-bouw" value="2400000" min="0" step="50000" inputmode="numeric"></label>
+            <label class="veld"><span>Bijkomende kosten, inclusief rente (€)</span><input type="number" id="o-bij" value="600000" min="0" step="10000" inputmode="numeric"></label>
+            <label class="veld"><span>Verwachte verkoopopbrengst (€)</span><input type="number" id="o-opbrengst" value="5400000" min="0" step="50000" inputmode="numeric"></label>
+            <label class="veld"><span>Gevraagde lening (€)</span><input type="number" id="o-lening" value="2700000" min="0" step="50000" inputmode="numeric"></label>
+          </div>
+        </form>
+        <div class="project__uit" aria-live="polite">
+          <div class="kengetallen">
+            <div class="kengetal"><span>Lening op kosten</span><strong id="o-u-ltc"></strong></div>
+            <div class="kengetal"><span>Lening op opbrengst</span><strong id="o-u-ltgdv"></strong></div>
+            <div class="kengetal"><span>Marge op kosten</span><strong id="o-u-margek"></strong></div>
+            <div class="kengetal"><span>Eigen geld in het project</span><strong id="o-u-eigenpct"></strong></div>
+          </div>
+          <dl class="uitkomst">
+            <div><dt>Totale kosten</dt><dd id="o-u-kosten"></dd></div>
+            <div><dt>Eigen geld</dt><dd id="o-u-eigen"></dd></div>
+            <div><dt>Winst vóór belasting</dt><dd id="o-u-winst"></dd></div>
+            <div><dt>Marge op opbrengst</dt><dd id="o-u-margeo"></dd></div>
+          </dl>
+          <p class="project__vervolg">Wilt u weten hoe een financier het hele dossier leest? De dossiercheck van JLM Business Holding stelt in tien minuten de vragen over project, kredietnemer, eigen geld en exit, en geeft direct een rapport.</p>
+          <a class="knop" href="https://jlmbusinessholding.com/nl/dossiercheck/" rel="noopener" target="_blank">Open de dossiercheck</a>
+        </div>
+      </div>
+      <p class="voetnoot">Voorbeeldcijfers. De uitkomst zegt niets over de vraag of een financier het project financiert: dat hangt ook af van locatie, vergunningen, voorverkoop en de kredietnemer.</p>
+    </div>
+
+    <!-- Markt -->
+    <div class="paneel" role="tabpanel" id="p-markt" aria-labelledby="tab-markt" hidden>
+      <div class="paneel__kop">
+        <h2>De Spaanse vastgoedmarkt in cijfers</h2>
+        <p>Twee openbare bronnen, elk kwartaal bijgewerkt: het investeringsvolume volgens CBRE en het bruto huurrendement volgens idealista.</p>
+      </div>
+      <div class="markt">
+        <div class="markt__blok markt__blok--kop">
+          <p class="markt__groot" id="m-volume"></p>
+          <p id="m-volume-tekst"></p>
+        </div>
+        <div class="markt__blok">
+          <h3>Waar het geld naartoe ging</h3>
+          <ul class="staven" id="m-segmenten"></ul>
+        </div>
+        <div class="markt__blok">
+          <h3>Per regio</h3>
+          <ul class="staven" id="m-regios"></ul>
+        </div>
+        <div class="markt__blok">
+          <h3>Bruto huurrendement, landelijk</h3>
+          <ul class="staven staven--geel" id="m-landelijk"></ul>
+        </div>
+        <div class="markt__blok">
+          <h3>Woningen, per stad</h3>
+          <ul class="staven staven--geel" id="m-steden"></ul>
+          <p class="klein">De hoogste en laagste steden uit het bericht van idealista.</p>
+        </div>
+      </div>
+      <p class="voetnoot" id="m-bronnen"></p>
+    </div>
+
+    <!-- Deals -->
+    <div class="paneel" role="tabpanel" id="p-deals" aria-labelledby="tab-deals" hidden>
+      <div class="paneel__kop">
+        <h2>Recente deals in Spanje</h2>
+        <p>Financieringen die debtfunds zelf bekendmaken en aankopen uit de vakpers. Elke maand aangevuld, met een link naar de bron.</p>
+      </div>
+      <div class="filters">
+        <div class="keuze" role="group" aria-label="Soort deal">
+          <button type="button" class="keuze__knop" data-soort="financieringen" aria-pressed="true">Financieringen</button>
+          <button type="button" class="keuze__knop" data-soort="transacties" aria-pressed="false">Aan- en verkopen</button>
+        </div>
+        <label class="veld veld--filter"><span>Segment</span><select id="d-segment"></select></label>
+      </div>
+      <p class="klein" id="d-telling" role="status"></p>
+      <ol class="deals" id="d-lijst"></ol>
+
+      <details class="meld">
+        <summary>Mist u een deal? Meld hem hier</summary>
+        <p>Heeft u zelf een financiering of aankoop in Spanje gedaan, of kent u er een die hier hoort te staan? Stuur hem in met een link naar een openbare bron. Wij lezen elke melding en plaatsen de deal na controle.</p>
+        <form class="meld__form" name="dealmelding" method="POST" action="/bedankt/" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="dealmelding">
+          <p class="verborgen"><label>Laat dit veld leeg: <input name="bot-field"></label></p>
+          <div class="velden">
+            <label class="veld"><span>Wat is er gekocht of gefinancierd</span><input type="text" name="deal" required></label>
+            <label class="veld"><span>Link naar de openbare bron</span><input type="url" name="bron" required placeholder="https://"></label>
+            <label class="veld"><span>Bedrag en plaats</span><input type="text" name="bedrag_plaats"></label>
+            <label class="veld"><span>Uw rol bij deze deal</span><select name="rol"><option>Niet betrokken</option><option>Koper of kredietnemer</option><option>Financier</option><option>Adviseur of makelaar</option></select></label>
+            <label class="veld"><span>Uw naam</span><input type="text" name="naam" required autocomplete="name"></label>
+            <label class="veld"><span>Uw e-mail</span><input type="email" name="email" required autocomplete="email"></label>
+          </div>
+          <label class="vink"><input type="checkbox" name="akkoord" required> <span>Ik ga akkoord met de verwerking van mijn gegevens volgens de <a href="https://jlmbusinessholding.com/nl/privacy/" rel="noopener" target="_blank">privacyverklaring</a>. Mijn naam wordt niet bij de deal geplaatst.</span></label>
+          <button class="knop" type="submit">Meld deze deal</button>
+        </form>
+      </details>
+      <p class="voetnoot">JLM Business Holding was bij deze deals niet betrokken. Het overzicht is een selectie van openbaar gepubliceerde berichten en is niet volledig. Bedragen en beschrijvingen komen van de genoemde bron.</p>
+    </div>
+  </div>
+</section>
+
+<section class="update" id="update">
+  <div class="baan update__in">
+    <div>
+      <h2>Eén keer per maand de nieuwe deals en cijfers</h2>
+      <p>Een korte mail op de eerste werkdag van de maand: welke financieringen en aankopen erbij zijn gekomen, en elk kwartaal de nieuwe cijfers over volume en huurrendement. Geen reclame, afmelden kan met één klik.</p>
+    </div>
+    <form class="update__form" name="maandupdate" method="POST" action="/bedankt/" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="maandupdate">
+      <p class="verborgen"><label>Laat dit veld leeg: <input name="bot-field"></label></p>
+      <label class="veld"><span>E-mailadres</span><input type="email" name="email" required autocomplete="email"></label>
+      <label class="vink"><input type="checkbox" name="akkoord" required> <span>Ik ontvang de maandupdate en ga akkoord met de <a href="https://jlmbusinessholding.com/nl/privacy/" rel="noopener" target="_blank">privacyverklaring</a>.</span></label>
+      <button class="knop knop--geel" type="submit">Meld mij aan</button>
+    </form>
+  </div>
+</section>
+
+<section class="situaties">
+  <div class="baan">
+    <h2>Drie situaties waarin wij worden gebeld</h2>
+    <div class="situaties__rij">
+      <article>
+        <h3>U koopt een verhuurd object</h3>
+        <p>Een appartementencomplex, hotel of bedrijfspand in Spanje, met een lening erbij. Wij zoeken de financier die bij het object en bij uw structuur past.</p>
+      </article>
+      <article>
+        <h3>U ontwikkelt of bouwt af</h3>
+        <p>Grond met vergunning, een lopende bouw of een project dat is stilgevallen. Wij maken het dossier zo dat een financier er snel ja of nee op kan zeggen.</p>
+      </article>
+      <article>
+        <h3>U wilt geld vrijmaken</h3>
+        <p>U bezit al vastgoed in Spanje en wilt herfinancieren, bijvoorbeeld om een volgende aankoop te doen.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="wie" id="wie">
+  <div class="baan wie__in">
+    <img src="/img/portret-jaap.jpg" width="800" height="1000" alt="Jaap Meelker" loading="lazy" decoding="async">
+    <div>
+      <h2>Spanje Rendement is van JLM Business Holding</h2>
+      <p>Ik ben Jaap Meelker. Na ruim veertig jaar in de financiële wereld, waarvan jaren als senior banker bij een Nederlandse bank voor vermogende particulieren en ondernemers, weet ik hoe een financier naar een aanvraag kijkt. Ik woon in Dénia en werk veel in Valencia, en bezoek projecten zelf.</p>
+      <p>JLM Business Holding regelt financiering en investeringsstructuur voor vastgoed in Spanje en Nederland, voor bedragen vanaf € 1 miljoen. Wij verstrekken zelf geen leningen: wij beoordelen, structureren en presenteren dossiers aan onafhankelijke financiers.</p>
+      <p><a href="https://jlmbusinessholding.com/nl/" rel="noopener" target="_blank">Naar jlmbusinessholding.com</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="baan contact__in">
+    <div class="contact__tekst">
+      <h2>Leg uw rekensom voor</h2>
+      <p>Vertel kort wat u wilt kopen, bouwen of herfinancieren. Binnen 48 uur krijgt u een eerste reactie van Jaap.</p>
+      <p class="contact__direct"><a href="mailto:jaap@jlmbusinessholding.com">jaap@jlmbusinessholding.com</a><br><a href="tel:+31681752045">+31 6 8175 2045</a></p>
+    </div>
+    <form class="contact__form" name="rekensom" method="POST" action="/bedankt/" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="rekensom">
+      <input type="hidden" name="rekensom" id="f-rekensom" value="">
+      <p class="verborgen"><label>Laat dit veld leeg: <input name="bot-field"></label></p>
+      <div class="velden">
+        <label class="veld"><span>Naam</span><input type="text" name="naam" required autocomplete="name"></label>
+        <label class="veld"><span>E-mail</span><input type="email" name="email" required autocomplete="email"></label>
+        <label class="veld"><span>Telefoon</span><input type="tel" name="telefoon" autocomplete="tel"></label>
+        <label class="veld"><span>Bedrijf</span><input type="text" name="bedrijf" autocomplete="organization"></label>
+        <label class="veld"><span>Ik ben</span><select name="rol"><option>Belegger</option><option>Ontwikkelaar</option><option>Family office</option><option>Adviseur</option></select></label>
+        <label class="veld"><span>Ik ben gevestigd in</span><select name="land"><option>Nederland</option><option>België</option><option>Spanje</option><option>Anders</option></select></label>
+        <label class="veld"><span>Wat wilt u doen</span><select name="doel"><option>Verhuurd object kopen</option><option>Ontwikkelen of afbouwen</option><option>Herfinancieren</option><option>Nog oriënteren</option></select></label>
+        <label class="veld"><span>Omvang</span><select name="bedrag"><option>€ 1 tot 3 miljoen</option><option>€ 3 tot 10 miljoen</option><option>Boven € 10 miljoen</option></select></label>
+      </div>
+      <label class="veld"><span>Uw plan in een paar zinnen</span><textarea name="bericht" rows="5" required></textarea></label>
+      <label class="vink"><input type="checkbox" name="meesturen" id="f-meesturen" checked> <span>Stuur mijn ingevulde rekensom mee</span></label>
+      <label class="vink"><input type="checkbox" name="akkoord" required> <span>Ik ga akkoord met de verwerking van mijn gegevens volgens de <a href="https://jlmbusinessholding.com/nl/privacy/" rel="noopener" target="_blank">privacyverklaring</a>.</span></label>
+      <button class="knop" type="submit">Verstuur naar Jaap</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="voet">
+  <div class="baan voet__in">
+    <div>
+      <p class="voet__naam">Spanje Rendement</p>
+      <p>Een initiatief van JLM Business Holding, handelsnaam van JLMX B.V., Capelle aan den IJssel, KvK 91382106.</p>
+    </div>
+    <p class="voet__klein">De rekentools geven een indicatie op basis van uw eigen invoer en zijn geen beleggings-, belasting- of financieringsadvies. JLM Business Holding verstrekt zelf geen leningen en neemt geen deposito's aan. Financiers nemen ieder hun eigen kredietbeslissing. Deze site gebruikt geen cookies en geen trackers.</p>
+    <p class="voet__klein"><a href="https://jlmbusinessholding.com/nl/privacy/" rel="noopener" target="_blank">Privacy</a> &nbsp; <a href="https://www.linkedin.com/in/jaapmeelker/" rel="noopener" target="_blank">LinkedIn</a> &nbsp; &copy; 2026 JLMX B.V.</p>
+  </div>
+</footer>
+
+<script src="/js/data.js" defer></script>
+<script src="/js/app.js" defer></script>
+</body>
+</html>
