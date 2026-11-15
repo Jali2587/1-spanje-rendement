@@ -312,7 +312,7 @@
     b.appendChild(bronLink(m.volume.bron, m.volume.url));
     b.appendChild(document.createTextNode(' voor het investeringsvolume en '));
     b.appendChild(bronLink(m.rendement.bron, m.rendement.url));
-    b.appendChild(document.createTextNode(' voor het bruto huurrendement (' + m.rendement.periode + '). Bruto rendement is de jaarhuur gedeeld door de vraagprijs, vóór kosten en belasting.'));
+    b.appendChild(document.createTextNode(' voor het bruto huurrendement (' + m.rendement.periode + '). Bruto rendement is de jaarhuur gedeeld door de vraagprijs, vóór kosten en belasting. De cijfers van CBRE zijn overgenomen uit het krantenbericht, niet uit het rapport zelf; de bedragen voor alternatief en zorg en voor logistiek zijn daar afgerond.'));
   }
 
   /* ---------- Deals ---------- */
@@ -352,6 +352,7 @@
       rechts.appendChild(maak('strong', d.bedrag === null ? 'deal__bedrag deal__bedrag--geen' : 'deal__bedrag', bedrag(d.bedrag)));
       var bron = (d.url && d.bron) ? bronLink('Bron: ' + d.bron, d.url) : bronLink('Bron: Brainsre News', D.transactiesBron.url);
       rechts.appendChild(bron);
+      if (d.gecontroleerd) rechts.appendChild(maak('span', 'deal__check', 'Nagelezen bij de bron op ' + datumTekst(d.gecontroleerd)));
       li.appendChild(rechts);
       ol.appendChild(li);
     });
