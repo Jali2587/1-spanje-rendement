@@ -46,7 +46,7 @@ window.SR_DATA = {
       bron: 'Maslow Capital', url: 'https://maslowcapital.com/blog/2026/02/03/maslow-capital-provides-e11-2m-to-fund-costa-del-sol-luxury-gated-villa-scheme/' }
   ],
 
-  // Aan- en verkopen uit de ranglijst van Brainsre News (2026). Alleen de maand is bekend.
+  // Aan- en verkopen. Zonder eigen bron en url komt de regel uit de ranglijst van Brainsre News (2026); daar is alleen de maand bekend.
   transactiesBron: { naam: 'Brainsre News, ranglijst transacties 2026', url: 'https://brainsre.news/transacciones-inmobiliarias-espana-ranking/' },
   transacties: [
     { datum: '2026-09', koper: 'InmoCaixa', verkoper: 'Bain Capital en FREO Group', bedrag: 385, segment: 'Kantoren', regio: 'Barcelona', titel: 'Edificio Estel, 52.000 m² kantoren' },
@@ -55,6 +55,8 @@ window.SR_DATA = {
     { datum: '2026-08', koper: 'Norges Bank en Sonae Sierra', verkoper: 'LSGI', bedrag: 1500, segment: 'Retail', regio: 'Meerdere regio\'s', titel: 'Portefeuille van acht winkelcentra' },
     { datum: '2026-08', koper: 'M&G Real Estate', verkoper: 'Hines', bedrag: 133, segment: 'Flex living', regio: 'Barcelona', titel: 'Aparto Diagonal Suites, 526 kamers' },
     { datum: '2026-08', koper: 'Meridia', verkoper: 'Bain Capital, Momentum REIM en Episode', bedrag: 125, segment: 'Flex living', regio: 'Madrid', titel: 'Flex living in Carabanchel, 977 eenheden' },
+    { datum: '2026-07', koper: 'Family office, niet bij naam genoemd', verkoper: '', bedrag: 8.2, segment: 'Hotels', regio: 'Barcelona', titel: 'Aparthotel Murmuri bij de Passeig de Gràcia',
+      bron: 'idealista', url: 'https://www.idealista.com/news/inmobiliario/hoteles/2026/07/14/905703-un-family-office-compra-por-8-2-millones-el-apartahotel-murmuri-junto-a-paseo-de' },
     { datum: '2026-07', koper: 'Nuveen Real Estate', verkoper: 'King Street en Medinvest', bedrag: 330, segment: 'Flex living', regio: 'Meerdere steden', titel: 'Studentenresidenties Bravo' },
     { datum: '2026-07', koper: 'Rivoli', verkoper: 'Nuveen Real Estate', bedrag: 250, segment: 'Retail', regio: 'Arroyomolinos, Madrid', titel: 'Winkelcentrum Xanadú, resterende 50%' },
     { datum: '2026-07', koper: 'Extendam', verkoper: 'Eurazeo en PSP Investments', bedrag: 145, segment: 'Hotels', regio: 'Madrid en Barcelona', titel: 'Drie hotels, 543 kamers' },

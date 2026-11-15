@@ -350,7 +350,7 @@
       li.appendChild(midden);
       var rechts = maak('div', 'deal__rechts');
       rechts.appendChild(maak('strong', d.bedrag === null ? 'deal__bedrag deal__bedrag--geen' : 'deal__bedrag', bedrag(d.bedrag)));
-      var bron = soort === 'financieringen' ? bronLink('Bron: ' + d.bron, d.url) : bronLink('Bron: Brainsre News', D.transactiesBron.url);
+      var bron = (d.url && d.bron) ? bronLink('Bron: ' + d.bron, d.url) : bronLink('Bron: Brainsre News', D.transactiesBron.url);
       rechts.appendChild(bron);
       li.appendChild(rechts);
       ol.appendChild(li);
