@@ -3,11 +3,26 @@
 window.SR_DATA = {
   bijgewerkt: '15 november 2026',
 
-  // Financieringen die de financier of de vakpers zelf openbaar heeft gemaakt.
+  // Financieringen van debtfunds, banken en platforms die de financier, de kredietnemer of de vakpers openbaar heeft gemaakt.
   financieringen: [
+    { datum: '2026-11-13', financier: 'Urbanitae (crowdfunding)', bedrag: null, segment: 'Hotels', regio: 'Tenerife',
+      titel: 'Aparthotel in Playa de las Américas', detail: 'Lening tegen 9,75% vaste rente per jaar voor een aparthotel in bedrijf met 106 appartementen. Het leenbedrag staat niet in het bericht.',
+      bron: 'Urbanitae', url: 'https://blog.urbanitae.com/2026/11/13/playa-de-las-americas-deuda-al-975-para-un-aparthotel-en-funcionamiento-en-tenerife/' },
+    { datum: '2026-11-12', financier: 'Urbanitae (crowdfunding)', bedrag: null, segment: 'Wonen', regio: 'Barcelona',
+      titel: '27 woningen in Cornellà de Llobregat', detail: 'Brugfinanciering tegen 12% voor een project van 27 woningen. Het leenbedrag staat niet in het bericht.',
+      bron: 'Urbanitae', url: 'https://blog.urbanitae.com/2026/11/12/cornella-riera-prestamo-puente-al-12-para-27-viviendas-en-barcelona/' },
+    { datum: '2026-11-06', financier: 'Urbanitae (crowdfunding)', bedrag: null, segment: 'Wonen', regio: 'Costa del Sol',
+      titel: 'Afbouw van een luxe villa in Sierra Blanca', detail: 'Lening tegen 10% om een villa in Marbella af te bouwen. Het leenbedrag staat niet in het bericht.',
+      bron: 'Urbanitae', url: 'https://blog.urbanitae.com/2026/11/06/vivaldi-iii-deuda-al-10-para-completar-una-villa-de-lujo-en-sierra-blanca/' },
     { datum: '2026-10-26', financier: 'Maslow Capital', bedrag: 126, segment: 'Logistiek', regio: 'Catalonië',
       titel: 'Twee voorverhuurde bedrijfsgebouwen bij Barcelona', detail: 'Ontwikkelfinanciering voor twee industriële projecten in Castellbisbal.',
       bron: 'Maslow Capital', url: 'https://maslowcapital.com/blog/2026/10/26/maslow-capital-lends-e126m-for-two-pre-let-industrial-developments-near-barcelona/' },
+    { datum: '2026-10-13', financier: 'Cajamar (bank)', bedrag: 8.5, segment: 'Hotels', regio: 'Cádiz',
+      titel: 'Hotel Senator Cádiz', detail: 'Financiering aan Atom Hoteles voor het hotel Senator Cádiz.',
+      bron: 'Brainsre News', url: 'https://brainsre.news/atom-hoteles-financiacion-hotel-senator-cadiz/' },
+    { datum: '2026-09-15', financier: 'ING (bank)', bedrag: 57.5, segment: 'Flex living', regio: 'Madrid',
+      titel: 'Studentenresidentie in Pozuelo', detail: 'Herfinanciering aan Student Experience voor de studentenresidentie in Pozuelo.',
+      bron: 'Brainsre News', url: 'https://brainsre.news/student-experience-residencia-estudiantes-pozuelo/' },
     { datum: '2026-09-08', financier: 'Maslow Capital', bedrag: 62.7, segment: 'Wonen', regio: 'Costa Blanca',
       titel: '131 woningen aan de Costa Blanca', detail: 'Faciliteit voor aankoop van de grond en bouw van 131 woningen.',
       bron: 'Maslow Capital', url: 'https://maslowcapital.com/blog/2026/09/08/maslow-capital-provides-a-e62-7-million-facility-for-131-home-residential-development-on-the-costa-blanca/' },
@@ -17,9 +32,15 @@ window.SR_DATA = {
     { datum: '2026-07-14', financier: 'Maslow Capital', bedrag: null, segment: 'Hotels', regio: 'Spanje en Portugal',
       titel: 'Hotelplatform van Tikehau Capital', detail: 'Financiering van een nieuw hotelplatform met een ontwikkelwaarde van meer dan € 200 miljoen. Het leenbedrag is niet gepubliceerd.',
       bron: 'Maslow Capital', url: 'https://maslowcapital.com/blog/2026/07/14/maslow-capital-finances-tikehau-capitals-new-hotel-platform-in-iberia-with-a-gross-development-value-of-more-than-e200-million/' },
+    { datum: '2026-06-17', financier: 'BBVA (bank)', bedrag: 16.5, segment: 'Wonen', regio: 'Costa del Sol',
+      titel: 'Woningproject Adagio in Estepona', detail: 'Ontwikkelfinanciering aan Metrovacesa voor de bouw van woningen in Estepona.',
+      bron: 'EjePrime', url: 'https://www.ejeprime.com/empresa/metrovacesa-suscribe-un-prestamo-de-165-millones-con-bbva-para-hacer-vivienda-en-estepona' },
     { datum: '2026-05-07', financier: 'Maslow Capital', bedrag: 40, segment: 'Logistiek', regio: 'Madrid',
       titel: 'Logistieke grondpositie Alma Meco', detail: 'Brugfinanciering aan Dunas Capital voor een van de grootste logistieke ontwikkelingen van Spanje.',
       bron: 'Maslow Capital', url: 'https://maslowcapital.com/blog/2026/05/07/maslow-capital-lends-e40m-to-dunas-capital-for-one-of-the-largest-logistics-developments-in-spain/' },
+    { datum: '2026-03-03', financier: 'Cofides', bedrag: 11, segment: 'Wonen', regio: 'Madrid en Barcelona',
+      titel: 'Circa 650 betaalbare huurwoningen', detail: 'Lening aan Alas Vivienda Asequible voor aankoop en exploitatie van circa 650 woningen.',
+      bron: 'EjePrime', url: 'https://www.ejeprime.com/residencial/cofides-concede-a-alas-un-prestamo-de-11-millones-para-adquirir-y-explotar-650-viviendas' },
     { datum: '2026-02-03', financier: 'Maslow Capital', bedrag: 11.2, segment: 'Wonen', regio: 'Costa del Sol',
       titel: 'Vijf luxe villa\'s in Benahavís', detail: 'Ontwikkelfaciliteit voor een afgesloten villaproject aan de Costa del Sol.',
       bron: 'Maslow Capital', url: 'https://maslowcapital.com/blog/2026/02/03/maslow-capital-provides-e11-2m-to-fund-costa-del-sol-luxury-gated-villa-scheme/' }
