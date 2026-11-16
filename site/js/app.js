@@ -7,11 +7,30 @@
   var MAANDEN = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
 
   function el(id) { return document.getElementById(id); }
+  // Bedragvelden tonen een punt per duizend (2.000.000); rekenen gebeurt met alleen de cijfers.
+  function isBedrag(e) { return !!e && e.hasAttribute('data-bedrag'); }
+  function cijfers(t) { return String(t).split(/[,]/)[0].replace(/\D/g, ''); }
+  function metPunten(t) { var c = cijfers(t).replace(/^0+(?=\d)/, ''); return c.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
   function getal(id) {
     var e = el(id);
+    if (isBedrag(e)) return parseInt(cijfers(e.value), 10) || 0;
     var v = e ? parseFloat(String(e.value).replace(',', '.')) : NaN;
     return isFinite(v) ? v : 0;
   }
+  function zetWaarde(e, w) { e.value = isBedrag(e) ? metPunten(w) : w; }
+  // Tijdens het typen de punten bijwerken en de cursor op dezelfde plek tussen de cijfers houden.
+  Array.prototype.forEach.call(document.querySelectorAll('input[data-bedrag]'), function (e) {
+    e.value = metPunten(e.value);
+    e.addEventListener('input', function () {
+      var pos = e.selectionStart === null ? e.value.length : e.selectionStart;
+      var voor = e.value.slice(0, pos).replace(/\D/g, '').length;
+      var nieuw = metPunten(e.value);
+      e.value = nieuw;
+      var i = 0, n = 0;
+      while (i < nieuw.length && n < voor) { if (/\d/.test(nieuw.charAt(i))) n++; i++; }
+      try { e.setSelectionRange(i, i); } catch (x) {}
+    });
+  });
   function zet(id, tekst) { var e = el(id); if (e) e.textContent = tekst; }
   function alsEuro(v) { return isFinite(v) ? euro.format(v) : 'n.v.t.'; }
   function alsPct(v) { return (v === null || !isFinite(v)) ? 'n.v.t.' : pct1.format(v); }
@@ -68,6 +87,15 @@
   var IDS = [];
   ['t', 's'].forEach(function (p) { VELDEN.forEach(function (v) { IDS.push(p + '-' + v); }); });
   IDS.push('jaren');
+  // Voorbeeldhuur voor Spanje: het landelijke cijfer voor woningen uit de marktcijfers, zodat een nieuw kwartaal overal doorwerkt.
+  (function () {
+    var r = D.markt && D.markt.rendement;
+    var w = r && (r.landelijk || []).filter(function (x) { return x.naam === 'Woningen'; })[0];
+    if (!w || !isFinite(w.pct)) return;
+    el('s-bar').value = String(w.pct);
+    Array.prototype.forEach.call(document.querySelectorAll('[data-huur-es]'), function (s) { s.textContent = nl(w.pct, 1) + '%'; });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-huur-periode]'), function (s) { s.textContent = r.periode; });
+  })();
   var STANDAARD = {};
   IDS.forEach(function (id) { STANDAARD[id] = el(id).value; });
 
@@ -149,11 +177,11 @@
 
   function toestand() {
     var o = {};
-    IDS.forEach(function (id) { o[id] = el(id).value; });
+    IDS.forEach(function (id) { var e = el(id); o[id] = isBedrag(e) ? cijfers(e.value) : e.value; });
     return o;
   }
   function laad(o) {
-    IDS.forEach(function (id) { if (o[id] !== undefined && o[id] !== null) el(id).value = o[id]; });
+    IDS.forEach(function (id) { if (o[id] !== undefined && o[id] !== null) zetWaarde(el(id), o[id]); });
     rekenRendement();
   }
   function alsHash(o) { return 'r=' + IDS.map(function (id) { return o[id]; }).join('_'); }
@@ -177,6 +205,43 @@
       '%, huur ' + getal('s-bar') + '%, rendement op eigen inbreng ' + alsPct(s.totaal) + '. Looptijd ' + jaren + ' jaar.';
   }
   function meld(tekst) { zet('r-melding', tekst); }
+
+  /* Woningprijzen over de afgelopen 36 maanden, naast het veld Waardestijging */
+  function historie(prefix, groepen) {
+    var keuze = el(prefix + '-regio');
+    if (!keuze || !groepen || !groepen.length) return;
+    var jaren = (D.waardestijging && D.waardestijging.jaren) || 3;
+    var rijen = [];
+    groepen.forEach(function (g) { g.regios.forEach(function (r) { rijen.push({ g: g, r: r }); }); });
+    rijen.forEach(function (x, i) { var o = maak('option', '', x.r.naam); o.value = String(i); keuze.appendChild(o); });
+    function huidig() {
+      var x = rijen[parseInt(keuze.value, 10)] || rijen[0];
+      return { x: x, pct: (Math.pow(x.r.tot / x.r.van, 1 / jaren) - 1) * 100 };
+    }
+    function toonHistorie() {
+      var h = huidig();
+      var t = el(prefix + '-hist-tekst');
+      t.textContent = '';
+      t.appendChild(maak('strong', '', x_naam(h.x) + ': gemiddeld ' + nl(h.pct, 1) + '% per jaar'));
+      t.appendChild(document.createTextNode(' (' + h.x.g.periode + '). Alleen woningen, geen voorspelling.'));
+      var b = el(prefix + '-hist-bron');
+      b.textContent = '';
+      b.appendChild(bronLink('Bron: ' + h.x.g.bron, h.x.g.url));
+      b.appendChild(document.createTextNode('.'));
+      el(prefix + '-hist-gebruik').textContent = 'Vul ' + nl(h.pct, 1) + '% in';
+    }
+    function x_naam(x) { return x.r.naam; }
+    keuze.addEventListener('change', toonHistorie);
+    el(prefix + '-hist-gebruik').addEventListener('click', function () {
+      el(prefix + '-groei').value = huidig().pct.toFixed(1);
+      rekenRendement();
+      meld('Waardestijging ' + (prefix === 't' ? 'thuis' : 'in Spanje') + ' gezet op het gemiddelde van de afgelopen 36 maanden.');
+    });
+    toonHistorie();
+    el(prefix + '-hist-veld').hidden = false;
+    el(prefix + '-hist').hidden = false;
+  }
+  if (D.waardestijging) { historie('t', D.waardestijging.thuis); historie('s', D.waardestijging.spanje); }
 
   /* Bewaarde scenario's: alleen in deze browser */
   var SLEUTEL = 'sr-scenarios';

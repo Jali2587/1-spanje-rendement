@@ -93,14 +93,16 @@
           <fieldset class="kolom">
             <legend>Thuis <span>Nederland of België</span></legend>
             <div class="velden">
-              <label class="veld"><span>Aankoopprijs (€)</span><input type="number" id="t-prijs" value="2000000" min="0" step="50000" inputmode="numeric"></label>
+              <label class="veld"><span>Aankoopprijs (€)</span><input type="text" id="t-prijs" value="2.000.000" inputmode="numeric" autocomplete="off" data-bedrag></label>
               <label class="veld"><span>Aankoopkosten (% van de prijs)</span><input type="number" id="t-kosten" value="10" min="0" max="30" step="0.1" inputmode="decimal"></label>
               <label class="veld"><span>Huur per jaar (% van de prijs)</span><input type="number" id="t-bar" value="5" min="0" max="30" step="0.1" inputmode="decimal"></label>
               <label class="veld"><span>Kosten van verhuur (% van de huur)</span><input type="number" id="t-expl" value="20" min="0" max="100" step="1" inputmode="decimal"></label>
               <label class="veld"><span>Lening (% van de prijs)</span><input type="number" id="t-ltv" value="60" min="0" max="100" step="1" inputmode="decimal"></label>
               <label class="veld"><span>Rente op de lening (% per jaar)</span><input type="number" id="t-rente" value="5" min="0" max="30" step="0.1" inputmode="decimal"></label>
               <label class="veld"><span>Waardestijging per jaar (%)</span><input type="number" id="t-groei" value="2" min="-20" max="30" step="0.1" inputmode="decimal"></label>
+              <label class="veld" id="t-hist-veld" hidden><span>Ter vergelijking: woningprijzen, afgelopen 36 maanden</span><select id="t-regio" aria-describedby="t-hist"></select></label>
             </div>
+            <p class="historie" id="t-hist" hidden><span id="t-hist-tekst"></span> <span id="t-hist-bron"></span> <button type="button" class="knop knop--tekst historie__knop" id="t-hist-gebruik"></button></p>
             <dl class="uitkomst uitkomst--stappen">
               <div class="uitkomst__kop"><dt>Bij aankoop</dt><dd></dd></div>
               <div><dt>Prijs plus aankoopkosten</dt><dd id="t-u-koop"></dd></div>
@@ -124,14 +126,16 @@
           <fieldset class="kolom kolom--spanje">
             <legend>Spanje <span>het alternatief</span></legend>
             <div class="velden">
-              <label class="veld"><span>Aankoopprijs (€)</span><input type="number" id="s-prijs" value="2000000" min="0" step="50000" inputmode="numeric"></label>
+              <label class="veld"><span>Aankoopprijs (€)</span><input type="text" id="s-prijs" value="2.000.000" inputmode="numeric" autocomplete="off" data-bedrag></label>
               <label class="veld"><span>Aankoopkosten (% van de prijs)</span><input type="number" id="s-kosten" value="10" min="0" max="30" step="0.1" inputmode="decimal"></label>
               <label class="veld"><span>Huur per jaar (% van de prijs)</span><input type="number" id="s-bar" value="6.2" min="0" max="30" step="0.1" inputmode="decimal"></label>
               <label class="veld"><span>Kosten van verhuur (% van de huur)</span><input type="number" id="s-expl" value="25" min="0" max="100" step="1" inputmode="decimal"></label>
               <label class="veld"><span>Lening (% van de prijs)</span><input type="number" id="s-ltv" value="55" min="0" max="100" step="1" inputmode="decimal"></label>
               <label class="veld"><span>Rente op de lening (% per jaar)</span><input type="number" id="s-rente" value="6" min="0" max="30" step="0.1" inputmode="decimal"></label>
               <label class="veld"><span>Waardestijging per jaar (%)</span><input type="number" id="s-groei" value="2" min="-20" max="30" step="0.1" inputmode="decimal"></label>
+              <label class="veld" id="s-hist-veld" hidden><span>Ter vergelijking: woningprijzen, afgelopen 36 maanden</span><select id="s-regio" aria-describedby="s-hist"></select></label>
             </div>
+            <p class="historie" id="s-hist" hidden><span id="s-hist-tekst"></span> <span id="s-hist-bron"></span> <button type="button" class="knop knop--tekst historie__knop" id="s-hist-gebruik"></button></p>
             <dl class="uitkomst uitkomst--stappen">
               <div class="uitkomst__kop"><dt>Bij aankoop</dt><dd></dd></div>
               <div><dt>Prijs plus aankoopkosten</dt><dd id="s-u-koop"></dd></div>
@@ -172,6 +176,7 @@
           <div><dt>Kosten van verhuur</dt><dd>Alles wat van de huur afgaat voordat u rente betaalt: onderhoud, beheer, verzekering, lokale belastingen en leegstand.</dd></div>
           <div><dt>Per jaar over</dt><dd>De huur min de kosten van verhuur en min de rente. De lening wordt tussentijds niet afgelost.</dd></div>
           <div><dt>Over na verkoop</dt><dd>De verkoopprijs min de lening die u dan aflost. De verkoopprijs is de aankoopprijs, elk jaar verhoogd met de waardestijging.</dd></div>
+          <div><dt>Woningprijzen, afgelopen 36 maanden</dt><dd>Hoeveel de woningprijzen in de gekozen regio de afgelopen drie jaar gemiddeld per jaar zijn gestegen, berekend uit de prijsindex van het statistiekbureau. Het cijfer gaat alleen over woningen en zegt niets over de komende jaren. U beslist zelf of u ermee rekent.</dd></div>
           <div><dt>Gemiddeld rendement per jaar op uw eigen inbreng</dt><dd>Het percentage waarmee uw eigen inbreng elk jaar zou moeten groeien om uit te komen op wat u in totaal terugkrijgt: elk jaar het bedrag dat u overhoudt, en aan het eind het bedrag na verkoop. Beleggers noemen dit de IRR.</dd></div>
           <div><dt>Rendement per jaar zonder lening</dt><dd>Dezelfde som, maar dan alsof u prijs en aankoopkosten helemaal zelf betaalt. Het verschil met het rendement op uw eigen inbreng is het effect van de lening.</dd></div>
         </dl>
@@ -183,7 +188,7 @@
         <ul class="bewaard__lijst" id="bewaard-lijst"></ul>
       </div>
 
-      <p class="voetnoot">De ingevulde cijfers zijn voorbeelden, geen marktgegevens of aanbod. De 6,2% huur voor Spanje is het landelijke gemiddelde voor woningen volgens idealista (derde kwartaal 2026): de jaarhuur gedeeld door de vraagprijs. Niet meegenomen: belasting op huur en winst, kosten bij verkoop en kosten van de lening zelf (afsluitprovisie, taxatie). Geen beleggingsadvies.</p>
+      <p class="voetnoot">De ingevulde cijfers zijn voorbeelden, geen marktgegevens of aanbod. De <span data-huur-es>6,2%</span> huur voor Spanje is het landelijke gemiddelde voor woningen volgens idealista (<span data-huur-periode>derde kwartaal 2026</span>): de jaarhuur gedeeld door de vraagprijs. Niet meegenomen: belasting op huur en winst, kosten bij verkoop en kosten van de lening zelf (afsluitprovisie, taxatie). Geen beleggingsadvies.</p>
     </div>
 
     <!-- Aankoopkosten -->
@@ -193,7 +198,7 @@
         <p>Op bestaand vastgoed betaalt de koper in Spanje overdrachtsbelasting (ITP). Het tarief verschilt per regio en loopt uiteen van 4% tot 13%.</p>
       </div>
       <form class="reken reken--rij" id="form-kosten" novalidate>
-        <label class="veld"><span>Aankoopprijs (€)</span><input type="number" id="k-prijs" value="2000000" min="0" step="50000" inputmode="numeric"></label>
+        <label class="veld"><span>Aankoopprijs (€)</span><input type="text" id="k-prijs" value="2.000.000" inputmode="numeric" autocomplete="off" data-bedrag></label>
         <label class="veld"><span>Regio</span><select id="k-regio"></select></label>
         <label class="veld"><span>Notaris, register en advies (% van de prijs)</span><input type="number" id="k-overig" value="1.5" min="0" max="10" step="0.1" inputmode="decimal"></label>
       </form>
@@ -223,11 +228,11 @@
       <div class="project">
         <form class="reken" id="form-project" novalidate>
           <div class="velden velden--een">
-            <label class="veld"><span>Grond of aankoop (€)</span><input type="number" id="o-grond" value="1200000" min="0" step="50000" inputmode="numeric"></label>
-            <label class="veld"><span>Bouwkosten (€)</span><input type="number" id="o-bouw" value="2400000" min="0" step="50000" inputmode="numeric"></label>
-            <label class="veld"><span>Overige kosten: architect, vergunningen, belasting, rente (€)</span><input type="number" id="o-bij" value="600000" min="0" step="10000" inputmode="numeric"></label>
-            <label class="veld"><span>Verwachte verkoopopbrengst (€)</span><input type="number" id="o-opbrengst" value="5400000" min="0" step="50000" inputmode="numeric"></label>
-            <label class="veld"><span>Gevraagde lening (€)</span><input type="number" id="o-lening" value="2700000" min="0" step="50000" inputmode="numeric"></label>
+            <label class="veld"><span>Grond of aankoop (€)</span><input type="text" id="o-grond" value="1.200.000" inputmode="numeric" autocomplete="off" data-bedrag></label>
+            <label class="veld"><span>Bouwkosten (€)</span><input type="text" id="o-bouw" value="2.400.000" inputmode="numeric" autocomplete="off" data-bedrag></label>
+            <label class="veld"><span>Overige kosten: architect, vergunningen, belasting, rente (€)</span><input type="text" id="o-bij" value="600.000" inputmode="numeric" autocomplete="off" data-bedrag></label>
+            <label class="veld"><span>Verwachte verkoopopbrengst (€)</span><input type="text" id="o-opbrengst" value="5.400.000" inputmode="numeric" autocomplete="off" data-bedrag></label>
+            <label class="veld"><span>Gevraagde lening (€)</span><input type="text" id="o-lening" value="2.700.000" inputmode="numeric" autocomplete="off" data-bedrag></label>
           </div>
         </form>
         <div class="project__uit" aria-live="polite">

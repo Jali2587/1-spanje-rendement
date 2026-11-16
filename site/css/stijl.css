@@ -88,9 +88,9 @@ img { max-width: 100%; height: auto; display: block; }
 .intro__voorwie strong { color: var(--inkt); }
 
 .steden { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr; gap: 10px; }
-.steden li { position: relative; border-radius: var(--r); overflow: hidden; height: 200px; background: var(--mist); }
-.steden img { width: 100%; height: 100%; object-fit: cover; }
-.steden span { position: absolute; left: 12px; bottom: 12px; background: var(--wit); color: var(--inkt); border-radius: 999px; padding: 5px 14px; font: 650 16px/1.2 var(--kop); }
+.steden li { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.steden img { display: block; width: 100%; height: 200px; object-fit: cover; border-radius: var(--r); background: var(--mist); }
+.steden span { padding-left: 2px; color: var(--zacht); font: 400 13px/1.3 var(--tekst); }
 
 /* Werkbank */
 .werkbank { padding: 0 0 88px; }
@@ -136,6 +136,10 @@ img { max-width: 100%; height: auto; display: block; }
 .veld input:hover, .veld select:hover, .veld textarea:hover { border-color: var(--groen); }
 .veld input:focus, .veld select:focus, .veld textarea:focus { outline: 3px solid var(--geel); outline-offset: 1px; border-color: var(--groen); }
 .veld--smal { max-width: 180px; }
+.historie { margin: 12px 0 0; font-size: 14px; line-height: 1.5; color: var(--zacht); }
+.historie strong { color: var(--inkt); }
+.historie a { color: inherit; }
+.historie__knop { min-height: 0; padding: 0; font-size: 14px; }
 
 .uitkomst { margin: 22px 0 0; }
 .uitkomst div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 9px 0; border-top: 1px solid var(--lijn); }
@@ -279,7 +283,8 @@ img { max-width: 100%; height: auto; display: block; }
   .situaties__rij { grid-template-columns: 1fr; gap: 28px; }
   .doen { grid-template-columns: 1fr; }
   .steden { grid-template-columns: repeat(5, minmax(150px, 1fr)); overflow-x: auto; scroll-snap-type: x mandatory; }
-  .steden li { height: 190px; scroll-snap-align: start; }
+  .steden li { scroll-snap-align: start; }
+  .steden img { height: 190px; }
   .situaties article img { max-width: 520px; }
   .wie__in { grid-template-columns: 1fr; gap: 28px; }
   .wie img { max-width: 220px; }
